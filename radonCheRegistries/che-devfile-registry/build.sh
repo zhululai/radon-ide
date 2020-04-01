@@ -16,11 +16,7 @@ TAG="radon-v1.0.0"
 TARGET="registry"
 USE_DIGESTS=false
 DOCKERFILE="./build/dockerfiles/Dockerfile"
-<<<<<<< HEAD
 VERSION="1.0.0-SNAPSHOT"
-=======
-VERSION=1.0.0-SNAPSHOT
->>>>>>> 2521e24c1d03efe78e7098bd1e289641ba104231
 
 USAGE="
 Usage: ./build.sh [OPTIONS]
