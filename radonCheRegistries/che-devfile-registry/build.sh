@@ -12,7 +12,7 @@ set -e
 
 REGISTRY="quay.io"
 ORGANIZATION="eclipse"
-TAG="nightly"
+TAG="radon-v1.0.0"
 TARGET="registry"
 USE_DIGESTS=false
 DOCKERFILE="./build/dockerfiles/Dockerfile"
