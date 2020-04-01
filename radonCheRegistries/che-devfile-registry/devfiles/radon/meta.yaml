@@ -1,6 +1,0 @@
----
-displayName: RADON
-description: RADON project Stack
-tags: ["RADON"]
-icon: /images/rust.svg
-globalMemoryLimit: 1686Mi
