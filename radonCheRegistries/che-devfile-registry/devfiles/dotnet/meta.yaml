@@ -1,0 +1,6 @@
+---
+displayName: ".NET Core"
+description: Stack with .Net 2.2
+tags: ["Debian", "Dotnet", "C#"]
+icon: /images/dotnetcore.svg
+globalMemoryLimit: 2710Mi
