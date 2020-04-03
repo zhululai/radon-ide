@@ -8,6 +8,7 @@
 #
 FROM alpine:3.10 AS builder
 RUN apk add --no-cache py-pip jq bash wget git skopeo && pip install yq
+RUN git submodule init && git submodule update
 
 # Registry, organization, and tag to use for base images in dockerfiles. Devfiles
 # will be rewritten during build to use these values for base images.
