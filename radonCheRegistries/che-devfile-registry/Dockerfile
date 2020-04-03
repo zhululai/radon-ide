@@ -35,5 +35,6 @@ COPY .htaccess README.md /var/www/html/
 COPY --from=builder /build/devfiles /var/www/html/devfiles
 COPY ./images /var/www/html/images
 COPY ./build/dockerfiles/entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD ["/usr/bin/run-httpd"]
