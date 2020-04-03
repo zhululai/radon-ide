@@ -41,9 +41,9 @@ CMD ["/usr/bin/run-httpd"]
 
 # Offline registry: download project zips and place them in /build/resources
 FROM builder AS offline-builder
-RUN chmod +x ./cache_projects.sh devfiles resources && \
-    ./cache_images.sh devfiles resources && \
-    chmod -R g+rwX /build
+RUN chmod +x ./cache_projects.sh devfiles resources
+RUN chmod +x ./cache_images.sh devfiles resources
+RUN chmod -R g+rwX /build
 
 # Offline registry: copy updated devfile.yamls and cached projects
 FROM registry AS offline-registry
