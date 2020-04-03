@@ -37,15 +37,3 @@ COPY ./images /var/www/html/images
 COPY ./build/dockerfiles/entrypoint.sh /usr/bin/
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD ["/usr/bin/run-httpd"]
-
-
-# Offline registry: download project zips and place them in /build/resources
-FROM builder AS offline-builder
-RUN chmod +x ./cache_projects.sh devfiles resources
-RUN chmod +x ./cache_images.sh devfiles resources
-RUN chmod -R g+rwX /build
-
-# Offline registry: copy updated devfile.yamls and cached projects
-FROM registry AS offline-registry
-COPY --from=offline-builder /build/devfiles /var/www/html/devfiles
-COPY --from=offline-builder /build/resources /var/www/html/resources
