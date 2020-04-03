@@ -22,7 +22,7 @@ WORKDIR /build/
 RUN TAG=${PATCHED_IMAGES_TAG} \
     ORGANIZATION=${PATCHED_IMAGES_ORG} \
     REGISTRY=${PATCHED_IMAGES_REG} \
-    ./update_devfile_patched_image_tags.sh
+    chmod +x ./update_devfile_patched_image_tags.sh
 RUN ./check_mandatory_fields.sh devfiles
 RUN if [[ ${USE_DIGESTS} == "true" ]]; then ./write_image_digests.sh devfiles; fi
 RUN ./index.sh > /build/devfiles/index.json
