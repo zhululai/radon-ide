@@ -22,11 +22,11 @@ WORKDIR /build/
 RUN TAG=${PATCHED_IMAGES_TAG} \
     ORGANIZATION=${PATCHED_IMAGES_ORG} \
     REGISTRY=${PATCHED_IMAGES_REG} \
-    ./update_devfile_patched_image_tags.sh
-RUN ./check_mandatory_fields.sh devfiles
-RUN if [[ ${USE_DIGESTS} == "true" ]]; then ./write_image_digests.sh devfiles; fi
-RUN ./index.sh > /build/devfiles/index.json
-RUN ./list_referenced_images.sh devfiles > /build/devfiles/external_images.txt
+    chmod +x ./update_devfile_patched_image_tags.sh
+RUN chmod +x ./check_mandatory_fields.sh devfiles
+RUN if [[ ${USE_DIGESTS} == "true" ]]; then chmod +x ./write_image_digests.sh devfiles; fi
+RUN chmod +x ./index.sh > /build/devfiles/index.json
+RUN chmod +x ./list_referenced_images.sh devfiles > /build/devfiles/external_images.txt
 RUN chmod -R g+rwX /build/devfiles
 
 FROM registry.centos.org/centos/httpd-24-centos7 AS registry
@@ -41,8 +41,8 @@ CMD ["/usr/bin/run-httpd"]
 
 # Offline registry: download project zips and place them in /build/resources
 FROM builder AS offline-builder
-RUN ./cache_projects.sh devfiles resources && \
-    ./cache_images.sh devfiles resources && \
+RUN chmod +x ./cache_projects.sh devfiles resources && \
+    chmod +x ./cache_images.sh devfiles resources && \
     chmod -R g+rwX /build
 
 # Offline registry: copy updated devfile.yamls and cached projects
