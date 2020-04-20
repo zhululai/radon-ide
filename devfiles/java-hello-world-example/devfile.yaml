@@ -17,4 +17,4 @@ commands:
     actions:
     - type: exec
       command: javac HelloWorld.java && java HelloWorld
-      workdir: '${CHE_PROJECTS_ROOT}/hello-world-java.git
+      workdir: '${CHE_PROJECTS_ROOT}/hello-world-java.git'
