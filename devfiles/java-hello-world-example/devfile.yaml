@@ -14,7 +14,8 @@ components:
     id: redhat/java/latest
 commands:
   - name: Run Hello World
+    actions:
+   -
     type: exec
-    component: hello-world-java.git
     command: javac HelloWorld.java && java HelloWorld
     workdir: '${CHE_PROJECTS_ROOT}/hello-world-java.git'
