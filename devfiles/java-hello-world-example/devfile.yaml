@@ -16,7 +16,7 @@ commands:
   - name: Run Hello World
     actions:
       - type: exec
-        command: Run Hello World
+        command: javac HelloWorld.java && java HelloWorld
         component: java-ls
         workdir: /projects/hello-world-java.git
 
