@@ -4,5 +4,5 @@ This is a Visual Studio Code extension to add commands in the RADON-IDE based on
 
 ## Features
 
-* Deploy CSAR command: right-click on a ,csar file to visualize the "Deploy CSAR" command a start the deployment process
+* Deploy CSAR command: right-click on a .csar file to visualize the "Deploy CSAR" command and start the deployment process
  
