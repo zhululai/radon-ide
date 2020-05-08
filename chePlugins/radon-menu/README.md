@@ -5,10 +5,10 @@ This plugin provides a RADON menu to invoke RADON tools.
 ## Features
 
 - RADON commands to invoke the following tools:
-    Graphical Modelling Tool
-    Verification Tool
-    Continuous Testing Tool
-    Decomposition Tool
+    Graphical Modelling Tool,
+    Verification Tool,
+    Continuous Testing Tool,
+    Decomposition Tool,
     Defect Prediction Tool
 - RADON command to start deployment process of a CSAR
 - RADON command to show deployment status
