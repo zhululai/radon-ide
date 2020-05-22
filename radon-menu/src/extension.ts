@@ -13,90 +13,69 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposableGMT = vscode.commands.registerCommand('radon-menu.startGMT', () => {
+	//let disposableGMT = vscode.commands.registerCommand('radon-menu.startGMT', () => {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Graphical Modelling Tool started');
-	});
+		//vscode.window.showInformationMessage('Graphical Modelling Tool started');
+	//});
 
-	let disposableVT = vscode.commands.registerCommand('radon-menu.startVT', () => {
+	//let disposableVT = vscode.commands.registerCommand('radon-menu.startVT', () => {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Verification Tool started');
-	});
+		//vscode.window.showInformationMessage('Verification Tool started');
+	//});
 
-	let disposableCTT = vscode.commands.registerCommand('radon-menu.startCTT', () => {
+	//let disposableCTT = vscode.commands.registerCommand('radon-menu.startCTT', () => {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Continuous Testing Tool started');
-	});
+		//vscode.window.showInformationMessage('Continuous Testing Tool started');
+	//});
 
-	let disposableDT = vscode.commands.registerCommand('radon-menu.startDT', () => {
+	//let disposableDT = vscode.commands.registerCommand('radon-menu.startDT', () => {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Decomposition Tool started');
-	});
+		//vscode.window.showInformationMessage('Decomposition Tool started');
+	//});
 
-	let disposableDPT = vscode.commands.registerCommand('radon-menu.startDPT', () => {
+	//let disposableDPT = vscode.commands.registerCommand('radon-menu.startDPT', () => {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Defect Prediction Tool started');
-	});
+		//vscode.window.showInformationMessage('Defect Prediction Tool started');
+	//});
 
 	let disposableDeployCSAR = vscode.commands.registerCommand('radon-menu.deployCSAR', (uri:vscode.Uri) => {
-	// The code you place here will be executed every time your command is executed
 
-	//const simpleGitPromise = require('simple-git/promise')("projects/radon-csars");
-	//let path= e.fsPath();
-	//pushCsarToGitHubRepository();
-	const repo="github.com/radon-h2020/radon-csars.git";
-	// User name and password of your GitHub
-	const userName = 'radon-dev';
-	const password = 'radon-h2020';
+		var path = require('path')
+		var filePath=uri.fsPath;
+		var fileName=path.parse(filePath).base;
 
-	//const simpleGitPromise = require('simple-git/promise')();
-	
-	// Set up GitHub url like this so no manual entry of user pass needed
-	//const gitHubUrl = 'https://${userName}:${password}@${repo}';
-	//simpleGitPromise.addRemote('origin',gitHubUrl);
-	var path = require('path')
-	var filePath=uri.fsPath;
-	var fileName=path.parse(filePath).base;
-	
-	var mkdirp = require('mkdirp');
-    var repoPath = 'd:/test/projects/radon-csars';
-	mkdirp.sync(repoPath);
-	
-	require('simple-git/promise')(repoPath).addRemote('origin', 'https://${userName}:${password}@github.com/radon-h2020/radon-csars.git');
-	
-	// require('simple-git/promise')(repoPath).init();
-	// console.info("Dopo init");
-	// require('simple-git/promise')(repoPath).add(fileName);
-	// console.info("Dopo add");
-	// require('simple-git/promise')(repoPath).commit("Commit of csar");
-	// console.info("Dopo commit");
-	// require('simple-git/promise')(repoPath).addRemote('origin', 'https://${userName}:${password}@github.com/radon-h2020/radon-csars.git');
-	// console.info("Dopo remote");
-	// require('simple-git/promise')(repoPath).push('origin', 'master');
-	// simpleGitPromise
-    //  .init()
-    //  .add('./*')
-    //  .commit("first commit!")
-    //  .addRemote('origin', 'https://${userName}:${password}@github.com/radon-h2020/radon-csars.git')
-    //  .push('origin', 'master');
-		vscode.window.showInformationMessage('Deployment process started: '+fileName);
+		const simpleGit = require('simple-git/promise')(__dirname+"/projects/radon-csars");
+
+		try{
+
+		  simpleGit.removeRemote('origin');
+		  simpleGit.addRemote('origin', 'https://radon-dev:radon-h2020@github.com/radon-h2020/radon-csars.git');
+		  simpleGit.add('./*')
+		  .then(()=> simpleGit.commit("Commit csar: "+ fileName))
+		  .then(()=> simpleGit.push(['-u','origin', 'master']));
+
+		}catch(e){
+			console.info("Error "+ e);
+		}
+
+		vscode.window.showInformationMessage('Deployment process started');
 	});
 
 	let disposableDeployStatus = vscode.commands.registerCommand('radon-menu.deployStatus', () => {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		vscode.env.openExternal(vscode.Uri.parse("http://operations.radon-h2020.eu:8080/"));
+		vscode.env.openExternal(vscode.Uri.parse("https://github.com/radon-h2020/radon-csars/blob/master/README.md"));
 		vscode.window.showInformationMessage('Opened deployment page');
 	});
 
@@ -112,7 +91,8 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInformationMessage('Opened RADON Help page');
 	});
 
-	context.subscriptions.push(disposableGMT,disposableVT,disposableCTT,disposableDT,disposableDPT,disposableHelp);
+	//context.subscriptions.push(disposableGMT,disposableVT,disposableCTT,disposableDT,disposableDPT,disposableHelp);
+	context.subscriptions.push(disposableDeployCSAR,disposableDeployStatus,disposableHelp);
 }
 
 function pushCsarToGitHubRepository(csarPath:string, repo:string) {
