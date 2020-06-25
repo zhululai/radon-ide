@@ -126,14 +126,14 @@ components:
 	alias: radon-vt-chePlugin
   - type: chePlugin
     reference: >-
-      https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-decomposition/0.0.1/meta.yaml
+      https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-decomposition/latest/meta.yaml
 	alias: radon-dt
   - type: chePlugin
     reference: >-
-      https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-defect-predictor/0.0.2/meta.yaml
+      https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-defect-predictor/latest/meta.yaml
 	alias: radon-dpt
   - type: chePlugin
     reference: >-
-      https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-menu/meta.yaml
+      https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-menu/latest/meta.yaml
     alias: radon-menu
 apiVersion: 1.0.0
