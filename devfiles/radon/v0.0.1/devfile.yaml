@@ -1,3 +1,4 @@
+
 metadata:
   generateName: radon-workspace-
 projects:
@@ -123,15 +124,15 @@ components:
   - type: chePlugin
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-vt/latest/meta.yaml
-	alias: radon-vt-chePlugin
+    alias: radon-vt-chePlugin
   - type: chePlugin
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-decomposition/latest/meta.yaml
-	alias: radon-dt
+    alias: radon-dt
   - type: chePlugin
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-defect-predictor/latest/meta.yaml
-	alias: radon-dpt
+    alias: radon-dpt
   - type: chePlugin
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-menu/latest/meta.yaml
