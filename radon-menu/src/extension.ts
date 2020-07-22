@@ -54,7 +54,14 @@ export function activate(context: vscode.ExtensionContext) {
 		var filePath=uri.fsPath;
 		var fileName=path.parse(filePath).base;
 
+		// var mkdirp = require('mkdirp');
+    	// var repoPath ="./projects/radon-csars";
+		// mkdirp.sync(repoPath);
+
 		const simpleGit = require('simple-git/promise')(__dirname+"/projects/radon-csars");
+		console.log("dirname: "+__dirname);
+		console.log("fullPath: "+__dirname+"/projects/radon-csars");
+
 
 		try{
 
