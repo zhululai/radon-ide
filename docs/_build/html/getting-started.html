@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>&lt;no title&gt; &#8212; radon-ide alpha documentation</title>
+    <title>Access to the RADON IDE &#8212; radon-ide alpha documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -31,7 +31,126 @@
 
           <div class="body" role="main">
             
-  <p>User guide</p>
+  <p>The following documentation explains how to use the alpha version of the RADON integrated framework by means of the RADON IDE.</p>
+<div class="section" id="access-to-the-radon-ide">
+<h1>Access to the RADON IDE<a class="headerlink" href="#access-to-the-radon-ide" title="Permalink to this headline">¶</a></h1>
+<p>Use the following <a class="reference external" href="https://docs.google.com/forms/d/1uwmzq8DHY-UIQB_iIASb9f6LRcnck4YvxU6PvXX-NS8/edit">form</a> to request access to the RADON IDE. An account will be created and the credentials will be sent via the email specified in the form.</p>
+<p>After receiving the credentials, login to the RADON IDE (Figure 1) connecting to the <a class="reference external" href="http://che-che.217.172.12.178.nip.io">Che Login page</a> to access the main Che dashboard (Figure 2). In the <em>Workspaces tab</em> the list of already created workspaces is visible and it is possible to create new ones.</p>
+<div class="figure align-default" id="id1">
+<img alt="_images/IDE_Login.jpg" src="_images/IDE_Login.jpg" />
+<p class="caption"><span class="caption-text">Figure 1: RADON IDE Login.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id2">
+<img alt="_images/EclipseCheDashboard_2.jpg" src="_images/EclipseCheDashboard_2.jpg" />
+<p class="caption"><span class="caption-text">Figure 2: IDE Dashboard.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="create-a-radon-workspace">
+<h1>Create a RADON workspace<a class="headerlink" href="#create-a-radon-workspace" title="Permalink to this headline">¶</a></h1>
+<p>In the Eclipse Che dashboard select <em>Get Started</em> tab and then <em>Custom Workspace</em>. Copy the URL of the <em>RADON Devfile</em> available <a class="reference external" href="https://raw.githubusercontent.com/radon-h2020/radon-ide/master/devfiles/radon/v0.0.1/devfile.yaml">here</a> and paste it in the field <em>URL of devfile</em>
+under <em>Devfile</em> section. Then click on <em>Load devfile</em> and once the RADON devfile has been loaded click on the <em>Create &amp; Open</em> button (Figure 3).</p>
+<div class="figure align-default" id="id3">
+<img alt="_images/LoadRADONDevfile.jpg" src="_images/LoadRADONDevfile.jpg" />
+<p class="caption"><span class="caption-text">Figure 3: Create a RADON Workspace.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>As depicted in Figure 4, a RADON workspace is started. It provides the “radon-particles” modeling project with a directory structure compliant with the GMT and the set of integrated RADON tools enabled (i.e., GMT, VT, DT, DPT).</p>
+<div class="figure align-default" id="id4">
+<img alt="_images/IDE_RADONWorkspace_Light.jpg" src="_images/IDE_RADONWorkspace_Light.jpg" />
+<p class="caption"><span class="caption-text">Figure 4: RADON Workspace.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="how-to-launch-radon-tools">
+<h1>How to launch RADON tools<a class="headerlink" href="#how-to-launch-radon-tools" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="graphical-modeling-tool">
+<h2>Graphical Modeling Tool<a class="headerlink" href="#graphical-modeling-tool" title="Permalink to this headline">¶</a></h2>
+<p>The GMT can be used within the RADON IDE to model an application. To launch the GMT, click on the <em>radon-gmt</em> option, present on the <em>My Workspace</em> right panel, as depicted in Figure 5.</p>
+<div class="figure align-default" id="id5">
+<img alt="_images/LaunchGMT_Light.jpg" src="_images/LaunchGMT_Light.jpg" />
+<p class="caption"><span class="caption-text">Figure 5: How to launch GMT.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<p>The browser window of the GMT will be opened (Figure 6) to create or adapt existing TOSCA modeling entities as well as to compose new applications interacting with files and folders from the “modeling project” inside the workspace.</p>
+<div class="figure align-default" id="id6">
+<img alt="_images/GMT.jpg" src="_images/GMT.jpg" />
+<p class="caption"><span class="caption-text">Figure 6: GMT Dashboard.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<p>The <em>Export to Filesystem</em> functionality (Figure 7), provided by the GMT permits to package and save a CSAR of a selected RADON Model to the workspace to process it using other RADON tools or to deploy it using the Orchestrator. The RADON model will be export in a CSAR file and will be store in the <em>radon-csar</em> folder (Figure 8).</p>
+<div class="figure align-default" id="id7">
+<img alt="_images/GMT_Export.jpg" src="_images/GMT_Export.jpg" />
+<p class="caption"><span class="caption-text">Figure 7: Export CSAR.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id8">
+<img alt="_images/GMT_csar_light.jpg" src="_images/GMT_csar_light.jpg" />
+<p class="caption"><span class="caption-text">Figure 8: <em>radon-csar</em> folder.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="verification-tool">
+<h2>Verification Tool<a class="headerlink" href="#verification-tool" title="Permalink to this headline">¶</a></h2>
+<p>The Verification Tool is used within the RADON IDE to verify that a RADON model conforms to the CDL specifications. The .cdl files defining the CDL specifications for a specific RADON model can be edited, imported and updated within the workspace of IDE (Figure 9). To get started, you can clone the <a class="reference external" href="https://github.com/radon-h2020/demo-verification-tool-sample-project.git">verification tool sample project</a> in the workspace, which contains a sample TOSCA model and a CDL specification. To clone this project use the Git functionalities provided in the workspace as described below:</p>
+<ol class="arabic simple">
+<li><p>Press <em>Ctlt+Shift+P</em> to open the command palette. Select the <em>Git:Clone</em> command and type the Repository URL of the verification tool sample project.</p></li>
+<li><p>Press <em>Enter</em> to clone the project in the workspave</p></li>
+</ol>
+<div class="figure align-default" id="id9">
+<img alt="_images/VT_cdl_light.jpg" src="_images/VT_cdl_light.jpg" />
+<p class="caption"><span class="caption-text">Figure 9: Edit CDL specifications.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<p>To verify that the RADON model conforms to these CDL specifications, make a right-click on the .cdl file and select the <em>Verify</em> option (Figure 10). The verification results are shown in the <em>RADON Verification Tool</em> output panel (Figure 11).</p>
+<div class="figure align-default" id="id10">
+<img alt="_images/VT_verify_light.jpg" src="_images/VT_verify_light.jpg" />
+<p class="caption"><span class="caption-text">Figure 10: Verification of CDL specifications by means of the VT.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id11">
+<img alt="_images/VT_output_light.jpg" src="_images/VT_output_light.jpg" />
+<p class="caption"><span class="caption-text">Figure 11: RADON Verification Tool output panel.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="decomposition-tool">
+<h2>Decomposition Tool<a class="headerlink" href="#decomposition-tool" title="Permalink to this headline">¶</a></h2>
+<p>The Decomposition Tool is used within the RADON IDE to optimize the deployment of a RADON model. To invoke the optimize functionality of the DT, make a right-click on the service template (.yaml) and select the Optimize option (Figure 12). The service template will be updated according to the optimal deployment scheme, and the minimum operating cost will be printed in the Output window (View → Output) as depicted in Figure 13.</p>
+<div class="figure align-default" id="id12">
+<img alt="_images/DT_optimize_light.jpg" src="_images/DT_optimize_light.jpg" />
+<p class="caption"><span class="caption-text">Figure 12: Optimize deployment by means of DT.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id13">
+<img alt="_images/DT_output_light.jpg" src="_images/DT_output_light.jpg" />
+<p class="caption"><span class="caption-text">Figure 13: Decomposition Tool output window.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="defect-prediction-tool">
+<h2>Defect Prediction Tool<a class="headerlink" href="#defect-prediction-tool" title="Permalink to this headline">¶</a></h2>
+<p>The Defect Prediction Tool is used within the RADON IDE to check defects in a (Ansible) IaC script. To invoke the detection functionality of the DPT, make a right-click on a YAML-based Ansible file (i.e. .yaml file) or on the active editor with the open YAML file and select the Run Detection option (Figure 14).
+The results (i.e., the metrics extracted from the script and defect-proneness) will be displayed in a new active tab(Figure 15).</p>
+<div class="figure align-default" id="id14">
+<img alt="_images/DPT_detection_light.jpg" src="_images/DPT_detection_light.jpg" />
+<p class="caption"><span class="caption-text">Figure 14: Check defects by means of DPT</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id15">
+<img alt="_images/DPT_output_light.jpg" src="_images/DPT_output_light.jpg" />
+<p class="caption"><span class="caption-text">Figure 15: Defect Prediction Tool output window.</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="deploy-the-application">
+<h1>Deploy the application<a class="headerlink" href="#deploy-the-application" title="Permalink to this headline">¶</a></h1>
+<p>To start the deployment process, select the CSAR, stored in the radon-csar project, make a right-click on it and select the <em>Deploy</em> option as depicted in Figure 21.
+During the deployment process, the CSAR will be published to the Template Library and a Jenkins job will be triggered to manage the deployment of the CSAR with the Orchestrator.</p>
+<div class="figure align-default" id="id16">
+<img alt="_images/Deploy_CSAR_light.jpg" src="_images/Deploy_CSAR_light.jpg" />
+<p class="caption"><span class="caption-text">Figure 16: Deploy of the CSAR.</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="other-radon-commands">
+<h1>Other RADON Commands<a class="headerlink" href="#other-radon-commands" title="Permalink to this headline">¶</a></h1>
+<p>From the command palette of the IDE (shown with <em>Ctrl+Shift+P</em>), a RADON menu (Figure 17) is available to perform the following actions:</p>
+<ul class="simple">
+<li><p>Visualize the status of the deployment of a CSAR by selecting the <em>Show Deployment Status</em> option. Once this command is selected, a browser window connecting to the output console of the Jenkins that manages the deployment process will be opened;</p></li>
+<li><p>Open the RADON Help Page by selecting the <em>Open Help Page</em> option. Once this command is selected a browser window connecting to the RADON methodology, GitHub page will be opened.</p></li>
+</ul>
+<div class="figure align-default" id="id17">
+<img alt="_images/RADON_menu_light.jpg" src="_images/RADON_menu_light.jpg" />
+<p class="caption"><span class="caption-text">Figure 17: RADON menu in the command palette.</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
+</div>
+</div>
 
 
           </div>

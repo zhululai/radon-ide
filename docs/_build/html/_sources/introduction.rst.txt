@@ -1,4 +1,4 @@
-The *RADON-IDE* provides a web-based development environment for multi-user usage and a front-end for the interaction with the RADON framework by enabling the interaction with the RADON tools and the access to the shared spaces of the RADON artifacts (i.e. RADON models).
+The *RADON IDE* provides a web-based development environment for multi-user usage and a front-end for the interaction with the RADON framework by enabling the interaction with the RADON tools and the access to the shared spaces of the RADON artifacts (i.e. RADON models).
 
 The RADON development environment is based on the `Eclipse Che <https://www.eclipse.org/che/>`_ technology: an open source developer workspace server which comes with a cloud integrated development environment (IDE) used by developers to create applications without the need to install any software on their local system.
 
