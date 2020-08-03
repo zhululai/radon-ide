@@ -81,13 +81,18 @@ To verify that the RADON model conforms to these CDL specifications, make a righ
 
 Decomposition Tool
 ******************
-The Decomposition Tool is used within the RADON IDE to optimize the deployment of a RADON model. To invoke the optimize functionality of the DT, make a right-click on the service template (.yaml) and select the Optimize option (Figure 12). The service template will be updated according to the optimal deployment scheme, and the minimum operating cost will be printed in the Output window (View → Output) as depicted in Figure 13.
+The Decomposition Tool is used within the RADON IDE to optimize the deployment of a RADON model. To get started, you can clone the `decomposition tool sample project <https://github.com/radon-h2020/demo-decomposition-tool-sample-project.git>`_ in the workspace, which contains a *demo-app* project. To clone this project use the Git functionalities provided in the workspace as described below:
+
+1. Press *Ctlt+Shift+P* to open the command palette. Select the *Git:Clone* command and type the Repository URL of the decomposition tool sample project. 
+2. Press *Enter* to clone the project in the workspave
+
+To invoke the optimize functionality of the DT, make a right-click on the service template (.yaml) and select the Optimize option (Figure 12). The service template will be updated according to the optimal deployment scheme, and the minimum operating cost will be printed in the Output window (View → Output) as depicted in Figure 13.
    
-.. figure:: imgs/DT_optimize_light.jpg
+.. figure:: imgs/DT_optimize_light_2.jpg
 
    Figure 12: Optimize deployment by means of DT.
    
-.. figure:: imgs/DT_output_light.jpg
+.. figure:: imgs/DT_output_light_2.jpg
 
    Figure 13: Decomposition Tool output window.
 
