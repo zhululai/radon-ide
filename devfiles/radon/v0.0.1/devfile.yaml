@@ -137,8 +137,12 @@ components:
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-menu/latest/meta.yaml
     alias: radon-menu
-  - type: chePlugin
+- type: chePlugin
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-xopera-saas/latest/meta.yaml
     alias: radon-xopera-saas
+  - type: chePlugin
+    reference: >-
+      https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-template-library/latest/meta.yaml
+    alias: radon-template-library-plugin
 apiVersion: 1.0.0
