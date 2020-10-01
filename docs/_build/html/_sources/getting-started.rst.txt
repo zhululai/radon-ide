@@ -17,7 +17,7 @@ After receiving the credentials, login to the RADON IDE (Figure 1) connecting to
 
 Create a RADON workspace
 """"""""""""""""""""""""
-In the Eclipse Che dashboard select *Get Started* tab and then *Custom Workspace*. Copy the URL of the *RADON Devfile* available `here <https://raw.githubusercontent.com/radon-h2020/radon-ide/master/devfiles/radon/v0.0.1/devfile.yaml>`_ and paste it in the field *URL of devfile*
+In the Eclipse Che dashboard select *Get Started* tab and then *Custom Workspace*. Copy the URL of the *RADON Devfile* available `here <https://raw.githubusercontent.com/radon-h2020/radon-ide/master/devfiles/radon/v0.0.2/devfile.yaml>`_ and paste it in the field *URL of devfile*
 under *Devfile* section. Then click on *Load devfile* and once the RADON devfile has been loaded click on the *Create & Open* button (Figure 3).
 
 .. figure:: imgs/LoadRADONDevfile.jpg
@@ -119,16 +119,51 @@ During the deployment process, the CSAR will be published to the Template Librar
 
    Figure 16: Deploy of the CSAR.
 
+Continuous Testing Tool 
+***********************
+
+The Continuous Testing Tool (CTT) is used within the RADON IDE to define and execute tests, which are specified in a CSAR for a system under test (SUT). To get started, you can clone the `CTT sample project <https://github.com/radon-h2020/demo-ctt-imageresize>`_. To clone this project use the Git functionalities provided in the workspace as described below:
+
+1. Press *Ctlt+Shift+P* to open the command palette. Select the *Git:Clone* command and type the above repository URL of the CTT sample project. 
+2. Press *Enter* to clone the project in the workspave
+
+In the folder *radon-ctt/*, you will find sample CSAR files for the SUT and the test infrastructure (TI). These files are exports from the service templates that can also be found in the RADON Particles. Hence, for using other SUT and TI CSAR files, users will need to export them via GMT. 
+
+To create a CTT configuration for an SUT CSAR file, make a right-click on the file, e.g., *sut-ec2.csar* (Figure 17).
+
+.. figure:: imgs/CTT_create_config.png
+
+   Figure 17: Creating a configuration file template for a CSAR.
+
+You fill find a new configuration file next to the CSAR file, e.g., *sut-ec2_testconfig.yml*. Double-click on the configuration file and it will be shown in the editor (Figure 18). 
+
+.. figure:: imgs/CTT_edit_config.png
+
+   Figure 18: Editing a configuration file template for a CSAR.
+
+Once the configuration file has been completed, the execution can by triggered by a right-click on the file (Figure 19). 
+
+.. figure:: imgs/CTT_trigger_execution.png
+
+   Figure 19: Executing CTT based on a configuration file.
+
+CTT will now execute all steps of the CTT workflow, including the deployment of the SUT and the CSAR, as well as executing the tests and fetching the results. After a successful execution, the results are stored in the configured folder (Figure 20).
+
+.. figure:: imgs/CTT_results.png
+
+   Figure 20: Results of the test execution.
+
+
 Other RADON Commands
 """"""""""""""""""""
-From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (Figure 17) is available to perform the following actions:
+From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (Figure 21) is available to perform the following actions:
 
 - Visualize the status of the deployment of a CSAR by selecting the *Show Deployment Status* option. Once this command is selected, a browser window connecting to the output console of the Jenkins that manages the deployment process will be opened;
 - Open the RADON Help Page by selecting the *Open Help Page* option. Once this command is selected a browser window connecting to the RADON methodology, GitHub page will be opened.
 
 .. figure:: imgs/RADON_menu_light.jpg
 
-   Figure 17: RADON menu in the command palette.
+   Figure 21: RADON menu in the command palette.
 
    
    

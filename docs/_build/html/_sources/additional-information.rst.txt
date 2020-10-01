@@ -10,6 +10,7 @@ References
 - Verification Tool: 	https://radon-vt-documentation.readthedocs.io/
 - Decomposition Tool: 	https://decomposition-tool.readthedocs.io/
 - Defect Prediction Tool: https://radon-h2020.github.io/radon-defect-prediction-api/
+- Continuous Testing Tool: https://continuous-testing-tool.readthedocs.io/
 - Orchestrator: https://xlab-si.github.io/xopera-docs/
 - Template Library: 	https://template-library-radon.xlab.si
 

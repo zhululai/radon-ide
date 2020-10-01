@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Access to the RADON IDE &#8212; radon-ide alpha documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -47,7 +47,7 @@
 </div>
 <div class="section" id="create-a-radon-workspace">
 <h1>Create a RADON workspace<a class="headerlink" href="#create-a-radon-workspace" title="Permalink to this headline">¶</a></h1>
-<p>In the Eclipse Che dashboard select <em>Get Started</em> tab and then <em>Custom Workspace</em>. Copy the URL of the <em>RADON Devfile</em> available <a class="reference external" href="https://raw.githubusercontent.com/radon-h2020/radon-ide/master/devfiles/radon/v0.0.1/devfile.yaml">here</a> and paste it in the field <em>URL of devfile</em>
+<p>In the Eclipse Che dashboard select <em>Get Started</em> tab and then <em>Custom Workspace</em>. Copy the URL of the <em>RADON Devfile</em> available <a class="reference external" href="https://raw.githubusercontent.com/radon-h2020/radon-ide/master/devfiles/radon/v0.0.2/devfile.yaml">here</a> and paste it in the field <em>URL of devfile</em>
 under <em>Devfile</em> section. Then click on <em>Load devfile</em> and once the RADON devfile has been loaded click on the <em>Create &amp; Open</em> button (Figure 3).</p>
 <div class="figure align-default" id="id3">
 <img alt="_images/LoadRADONDevfile.jpg" src="_images/LoadRADONDevfile.jpg" />
@@ -143,17 +143,46 @@ During the deployment process, the CSAR will be published to the Template Librar
 <img alt="_images/Deploy_CSAR_light.jpg" src="_images/Deploy_CSAR_light.jpg" />
 <p class="caption"><span class="caption-text">Figure 16: Deploy of the CSAR.</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
 </div>
+<div class="section" id="continuous-testing-tool">
+<h2>Continuous Testing Tool<a class="headerlink" href="#continuous-testing-tool" title="Permalink to this headline">¶</a></h2>
+<p>The Continuous Testing Tool (CTT) is used within the RADON IDE to define and execute tests, which are specified in a CSAR for a system under test (SUT). To get started, you can clone the <a class="reference external" href="https://github.com/radon-h2020/demo-ctt-imageresize">CTT sample project</a>. To clone this project use the Git functionalities provided in the workspace as described below:</p>
+<ol class="arabic simple">
+<li><p>Press <em>Ctlt+Shift+P</em> to open the command palette. Select the <em>Git:Clone</em> command and type the above repository URL of the CTT sample project.</p></li>
+<li><p>Press <em>Enter</em> to clone the project in the workspave</p></li>
+</ol>
+<p>In the folder <em>radon-ctt/</em>, you will find sample CSAR files for the SUT and the test infrastructure (TI). These files are exports from the service templates that can also be found in the RADON Particles. Hence, for using other SUT and TI CSAR files, users will need to export them via GMT.</p>
+<p>To create a CTT configuration for an SUT CSAR file, make a right-click on the file, e.g., <em>sut-ec2.csar</em> (Figure 17).</p>
+<div class="figure align-default" id="id17">
+<img alt="imgs/CTT_create_config.png" src="imgs/CTT_create_config.png" />
+<p class="caption"><span class="caption-text">Figure 17: Creating a configuration file template for a CSAR.</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
+</div>
+<p>You fill find a new configuration file next to the CSAR file, e.g., <em>sut-ec2_testconfig.yml</em>. Double-click on the configuration file and it will be shown in the editor (Figure 18).</p>
+<div class="figure align-default" id="id18">
+<img alt="imgs/CTT_edit_config.png" src="imgs/CTT_edit_config.png" />
+<p class="caption"><span class="caption-text">Figure 18: Editing a configuration file template for a CSAR.</span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
+</div>
+<p>Once the configuration file has been completed, the execution can by triggered by a right-click on the file (Figure 19).</p>
+<div class="figure align-default" id="id19">
+<img alt="imgs/CTT_trigger_execution.png" src="imgs/CTT_trigger_execution.png" />
+<p class="caption"><span class="caption-text">Figure 19: Executing CTT based on a configuration file.</span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
+</div>
+<p>CTT will now execute all steps of the CTT workflow, including the deployment of the SUT and the CSAR, as well as executing the tests and fetching the results. After a successful execution, the results are stored in the configured folder (Figure 20).</p>
+<div class="figure align-default" id="id20">
+<img alt="imgs/CTT_results.png" src="imgs/CTT_results.png" />
+<p class="caption"><span class="caption-text">Figure 20: Results of the test execution.</span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
+</div>
+</div>
 </div>
 <div class="section" id="other-radon-commands">
 <h1>Other RADON Commands<a class="headerlink" href="#other-radon-commands" title="Permalink to this headline">¶</a></h1>
-<p>From the command palette of the IDE (shown with <em>Ctrl+Shift+P</em>), a RADON menu (Figure 17) is available to perform the following actions:</p>
+<p>From the command palette of the IDE (shown with <em>Ctrl+Shift+P</em>), a RADON menu (Figure 21) is available to perform the following actions:</p>
 <ul class="simple">
 <li><p>Visualize the status of the deployment of a CSAR by selecting the <em>Show Deployment Status</em> option. Once this command is selected, a browser window connecting to the output console of the Jenkins that manages the deployment process will be opened;</p></li>
 <li><p>Open the RADON Help Page by selecting the <em>Open Help Page</em> option. Once this command is selected a browser window connecting to the RADON methodology, GitHub page will be opened.</p></li>
 </ul>
-<div class="figure align-default" id="id17">
+<div class="figure align-default" id="id21">
 <img alt="_images/RADON_menu_light.jpg" src="_images/RADON_menu_light.jpg" />
-<p class="caption"><span class="caption-text">Figure 17: RADON menu in the command palette.</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Figure 21: RADON menu in the command palette.</span><a class="headerlink" href="#id21" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 
@@ -208,7 +237,7 @@ During the deployment process, the CSAR will be published to the Template Librar
       &copy;2020, Stefania D'Agostini.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
