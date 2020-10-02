@@ -61,7 +61,7 @@ Verification Tool
 
 The Verification Tool is used within the RADON IDE to verify that a RADON model conforms to the CDL specifications. The .cdl files defining the CDL specifications for a specific RADON model can be edited, imported and updated within the workspace of IDE (Figure 9). To get started, you can clone the `verification tool sample project <https://github.com/radon-h2020/demo-verification-tool-sample-project.git>`_ in the workspace, which contains a sample TOSCA model and a CDL specification. To clone this project use the Git functionalities provided in the workspace as described below:
 
-1. Press *Ctlt+Shift+P* to open the command palette. Select the *Git:Clone* command and type the Repository URL of the verification tool sample project. 
+1. Press *Ctrl+Shift+P* to open the command palette. Select the *Git:Clone* command and type the Repository URL of the verification tool sample project. 
 2. Press *Enter* to clone the project in the workspace
 
 
@@ -83,7 +83,7 @@ Decomposition Tool
 ******************
 The Decomposition Tool is used within the RADON IDE to optimize the deployment of a RADON model. To get started, you can clone the `decomposition tool sample project <https://github.com/radon-h2020/demo-decomposition-tool-sample-project.git>`_ in the workspace, which contains a *demo-app* project. To clone this project use the Git functionalities provided in the workspace as described below:
 
-1. Press *Ctlt+Shift+P* to open the command palette. Select the *Git:Clone* command and type the Repository URL of the decomposition tool sample project. 
+1. Press *Ctrl+Shift+P* to open the command palette. Select the *Git:Clone* command and type the Repository URL of the decomposition tool sample project. 
 2. Press *Enter* to clone the project in the workspace
 
 To invoke the optimize functionality of the DT, make a right-click on the service template (.yaml) and select the Optimize option (Figure 12). The service template will be updated according to the optimal deployment scheme, and the minimum operating cost will be printed in the Output window (View → Output) as depicted in Figure 13.
@@ -124,7 +124,7 @@ Continuous Testing Tool
 
 The Continuous Testing Tool (CTT) is used within the RADON IDE to define and execute tests, which are specified in a CSAR for a system under test (SUT). To get started, you can clone the `CTT sample project <https://github.com/radon-h2020/demo-ctt-imageresize>`_. To clone this project use the Git functionalities provided in the workspace as described below:
 
-1. Press *Ctlt+Shift+P* to open the command palette. Select the *Git:Clone* command and type the above repository URL of the CTT sample project. 
+1. Press *Ctrl+Shift+P* to open the command palette. Select the *Git:Clone* command and type the above repository URL of the CTT sample project. 
 2. Press *Enter* to clone the project in the workspace
 
 In the folder *radon-ctt/*, you will find sample CSAR files for the SUT and the test infrastructure (TI). These files are exports from the service templates that can also be found in the RADON Particles. Hence, for using other SUT and TI CSAR files, users will need to export them via GMT. 
