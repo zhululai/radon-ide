@@ -99,7 +99,7 @@ under <em>Devfile</em> section. Then click on <em>Load devfile</em> and once the
 <img alt="_images/LoadRADONDevfile.jpg" src="_images/LoadRADONDevfile.jpg" />
 <p class="caption"><span class="caption-text">Figure 3: Create a RADON Workspace.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
-<p>As depicted in Figure 4, a RADON workspace is started. It provides the “radon-particles” modeling project with a directory structure compliant with the GMT and the set of integrated RADON tools enabled (i.e., GMT, VT, DT, DPT).</p>
+<p>As depicted in Figure 4, a RADON workspace is started. It provides the “radon-particles” modeling project with a directory structure compliant with the GMT and the set of integrated RADON tools enabled (i.e., GMT, VT, DT, DPT, CTT).</p>
 <div class="figure align-default" id="id9">
 <img alt="_images/IDE_RADONWorkspace_Light.jpg" src="_images/IDE_RADONWorkspace_Light.jpg" />
 <p class="caption"><span class="caption-text">Figure 4: RADON Workspace.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
@@ -134,7 +134,7 @@ under <em>Devfile</em> section. Then click on <em>Load devfile</em> and once the
 <p>The Verification Tool is used within the RADON IDE to verify that a RADON model conforms to the CDL specifications. The .cdl files defining the CDL specifications for a specific RADON model can be edited, imported and updated within the workspace of IDE (Figure 9). To get started, you can clone the <a class="reference external" href="https://github.com/radon-h2020/demo-verification-tool-sample-project.git">verification tool sample project</a> in the workspace, which contains a sample TOSCA model and a CDL specification. To clone this project use the Git functionalities provided in the workspace as described below:</p>
 <ol class="arabic simple">
 <li><p>Press <em>Ctlt+Shift+P</em> to open the command palette. Select the <em>Git:Clone</em> command and type the Repository URL of the verification tool sample project.</p></li>
-<li><p>Press <em>Enter</em> to clone the project in the workspave</p></li>
+<li><p>Press <em>Enter</em> to clone the project in the workspace</p></li>
 </ol>
 <div class="figure align-default" id="id14">
 <img alt="_images/VT_cdl_light.jpg" src="_images/VT_cdl_light.jpg" />
@@ -155,7 +155,7 @@ under <em>Devfile</em> section. Then click on <em>Load devfile</em> and once the
 <p>The Decomposition Tool is used within the RADON IDE to optimize the deployment of a RADON model. To get started, you can clone the <a class="reference external" href="https://github.com/radon-h2020/demo-decomposition-tool-sample-project.git">decomposition tool sample project</a> in the workspace, which contains a <em>demo-app</em> project. To clone this project use the Git functionalities provided in the workspace as described below:</p>
 <ol class="arabic simple">
 <li><p>Press <em>Ctlt+Shift+P</em> to open the command palette. Select the <em>Git:Clone</em> command and type the Repository URL of the decomposition tool sample project.</p></li>
-<li><p>Press <em>Enter</em> to clone the project in the workspave</p></li>
+<li><p>Press <em>Enter</em> to clone the project in the workspace</p></li>
 </ol>
 <p>To invoke the optimize functionality of the DT, make a right-click on the service template (.yaml) and select the Optimize option (Figure 12). The service template will be updated according to the optimal deployment scheme, and the minimum operating cost will be printed in the Output window (View → Output) as depicted in Figure 13.</p>
 <div class="figure align-default" id="id17">
@@ -194,41 +194,36 @@ During the deployment process, the CSAR will be published to the Template Librar
 <p>The Continuous Testing Tool (CTT) is used within the RADON IDE to define and execute tests, which are specified in a CSAR for a system under test (SUT). To get started, you can clone the <a class="reference external" href="https://github.com/radon-h2020/demo-ctt-imageresize">CTT sample project</a>. To clone this project use the Git functionalities provided in the workspace as described below:</p>
 <ol class="arabic simple">
 <li><p>Press <em>Ctlt+Shift+P</em> to open the command palette. Select the <em>Git:Clone</em> command and type the above repository URL of the CTT sample project.</p></li>
-<li><p>Press <em>Enter</em> to clone the project in the workspave</p></li>
+<li><p>Press <em>Enter</em> to clone the project in the workspace</p></li>
 </ol>
 <p>In the folder <em>radon-ctt/</em>, you will find sample CSAR files for the SUT and the test infrastructure (TI). These files are exports from the service templates that can also be found in the RADON Particles. Hence, for using other SUT and TI CSAR files, users will need to export them via GMT.</p>
-<p>To create a CTT configuration for an SUT CSAR file, make a right-click on the file, e.g., <em>sut-ec2.csar</em> (Figure 17).</p>
+<p>To create a CTT configuration for an SUT CSAR file, make a right-click on the file, e.g., <em>sut-ec2.csar</em>, and select “Create test configuration” (Figure 17).</p>
 <div class="figure align-default" id="id22">
-<img alt="imgs/CTT_create_config.png" src="imgs/CTT_create_config.png" />
+<img alt="_images/CTT_create_config.png" src="_images/CTT_create_config.png" />
 <p class="caption"><span class="caption-text">Figure 17: Creating a configuration file template for a CSAR.</span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
 </div>
-<p>You fill find a new configuration file next to the CSAR file, e.g., <em>sut-ec2_testconfig.yml</em>. Double-click on the configuration file and it will be shown in the editor (Figure 18).</p>
+<p>You fill find a new configuration file next to the CSAR file, e.g., <em>sut-ec2_testconfig.yml</em>. Double-click on the configuration file and it will be shown in the editor. Once the configuration file has been completed, the execution can by triggered by a right-click on the file and selecting “Execute test configuration” (Figure 18).</p>
 <div class="figure align-default" id="id23">
-<img alt="imgs/CTT_edit_config.png" src="imgs/CTT_edit_config.png" />
-<p class="caption"><span class="caption-text">Figure 18: Editing a configuration file template for a CSAR.</span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
+<img alt="_images/CTT_trigger_execution.png" src="_images/CTT_trigger_execution.png" />
+<p class="caption"><span class="caption-text">Figure 18: Executing CTT based on a configuration file.</span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
 </div>
-<p>Once the configuration file has been completed, the execution can by triggered by a right-click on the file (Figure 19).</p>
+<p>CTT will now execute all steps of the CTT workflow, including the deployment of the SUT and the CSAR, as well as executing the tests and fetching the results. After a successful execution, the results are stored in the configured folder (Figure 19).</p>
 <div class="figure align-default" id="id24">
-<img alt="imgs/CTT_trigger_execution.png" src="imgs/CTT_trigger_execution.png" />
-<p class="caption"><span class="caption-text">Figure 19: Executing CTT based on a configuration file.</span><a class="headerlink" href="#id24" title="Permalink to this image">¶</a></p>
-</div>
-<p>CTT will now execute all steps of the CTT workflow, including the deployment of the SUT and the CSAR, as well as executing the tests and fetching the results. After a successful execution, the results are stored in the configured folder (Figure 20).</p>
-<div class="figure align-default" id="id25">
-<img alt="imgs/CTT_results.png" src="imgs/CTT_results.png" />
-<p class="caption"><span class="caption-text">Figure 20: Results of the test execution.</span><a class="headerlink" href="#id25" title="Permalink to this image">¶</a></p>
+<img alt="_images/CTT_results.png" src="_images/CTT_results.png" />
+<p class="caption"><span class="caption-text">Figure 19: Results of the test execution.</span><a class="headerlink" href="#id24" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
 <div class="section" id="other-radon-commands">
 <h3>Other RADON Commands<a class="headerlink" href="#other-radon-commands" title="Permalink to this headline">¶</a></h3>
-<p>From the command palette of the IDE (shown with <em>Ctrl+Shift+P</em>), a RADON menu (Figure 21) is available to perform the following actions:</p>
+<p>From the command palette of the IDE (shown with <em>Ctrl+Shift+P</em>), a RADON menu (Figure 20) is available to perform the following actions:</p>
 <ul class="simple">
 <li><p>Visualize the status of the deployment of a CSAR by selecting the <em>Show Deployment Status</em> option. Once this command is selected, a browser window connecting to the output console of the Jenkins that manages the deployment process will be opened;</p></li>
 <li><p>Open the RADON Help Page by selecting the <em>Open Help Page</em> option. Once this command is selected a browser window connecting to the RADON methodology, GitHub page will be opened.</p></li>
 </ul>
-<div class="figure align-default" id="id26">
+<div class="figure align-default" id="id25">
 <img alt="_images/RADON_menu_light.jpg" src="_images/RADON_menu_light.jpg" />
-<p class="caption"><span class="caption-text">Figure 21: RADON menu in the command palette.</span><a class="headerlink" href="#id26" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Figure 20: RADON menu in the command palette.</span><a class="headerlink" href="#id25" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
