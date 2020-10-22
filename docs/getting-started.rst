@@ -45,7 +45,7 @@ The browser window of the GMT will be opened (Figure 6) to create or adapt exist
 
 .. figure:: imgs/GMT.jpg
 
-   Figure 6: GMT Dashboard: List of available TOSCA service templates.
+   Figure 6: GMT Dashboard: List of available RADON Models.
 
 GMT is a web-based environment to graphically model TOSCA topologies.
 Follow the official `user guide <https://winery.readthedocs.io/en/latest/user/index.html>`_ to learn how to use the tool.
