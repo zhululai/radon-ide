@@ -169,6 +169,8 @@ components:
                     value: ""
                   - name: AWS_SECRET_ACCESS_KEY
                     value: ""
+                  - name: KEY_TYPE
+                    value: "<Type of key specified in the header of the SSH private key (e.g., RSA, OPENSSH)>"
                   - name: SSH_PRIV_KEY
                     value: >
                       EC2_SSH_PRIVATE_KEY_WITHOUT_HEADER_AND_FOOTER
