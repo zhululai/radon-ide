@@ -32,6 +32,7 @@ As depicted in Figure 4, a RADON workspace is started. It provides the “radon-
 
 How to launch RADON tools 
 """""""""""""""""""""""""
+
 Graphical Modeling Tool
 ***********************
 The GMT can be used within the RADON IDE to model an application. To launch the GMT, click on the *radon-gmt* option, present on the *My Workspace* right panel, as depicted in Figure 5.
@@ -44,9 +45,14 @@ The browser window of the GMT will be opened (Figure 6) to create or adapt exist
 
 .. figure:: imgs/GMT.jpg
 
-   Figure 6: GMT Dashboard.
+   Figure 6: GMT Dashboard: List of available RADON Models.
 
-The *Export to Filesystem* functionality (Figure 7), provided by the GMT permits to package and save a CSAR of a selected RADON Model to the workspace to process it using other RADON tools or to deploy it using the Orchestrator. The RADON model will be export in a CSAR file and will be store in the *radon-csar* folder (Figure 8).
+GMT is a web-based environment to graphically model TOSCA topologies.
+Follow the official `user guide <https://winery.readthedocs.io/en/latest/user/index.html>`_ to learn how to use the tool.
+
+One important aspect is the *Export to Filesystem* functionality (Figure 7).
+It permits to package and save a CSAR of a selected RADON Model to the workspace to process it using other RADON tools or to deploy it using the Orchestrator.
+The RADON model will be exported in a CSAR file and will be store in the *radon-csar* folder (Figure 8).
 
 .. figure:: imgs/GMT_Export.jpg
 
