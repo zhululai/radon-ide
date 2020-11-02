@@ -109,6 +109,189 @@ The results (i.e., the metrics extracted from the script and defect-proneness) w
 
    Figure 15: Defect Prediction Tool output window.
 
+Template library
+****************
+The Template library RADON IDE plugin is used for communication between Template library and the RADON IDE (Eclipse Che). Using the plugin, the user is able to
+manage, store and retrieve his TOSCA modules (templates, blueprints (CSARs)) and their implementations (e.g. Ansible playbooks) from Eclipse Che Theia or Visual Studio Code.
+
+To prevent any possible confusions remember that Template library (service) or its parts may also be called TPS (Template Publishing Service) or
+TLPS (Template Library Publishing Service). If you are totally unfamiliar with TPS you can take a look at the
+[Template library's documentation](https://template-library-radon.xlab.si/docs/).
+
+Main features
+=============
+The extension uses the [Template library REST API](https://template-library-radon.xlab.si/swagger/) and can therefore invoke various Template library actions.
+
+Currently, supported actions are:
+
+- setting Template library REST API endpoint
+- creating and publishing TOSCA template or CSAR and its version
+- downloading a specific template version files
+- deleting saved login info (KeyCloak cookies)
+
+Usage
+======
+The plugin is invoked by right clicking on the file from file explorer or in the editor. There are four
+commands that can be selected from the dropdown options and these are further explained within the next sections.
+
+.. figure:: imgs/tl/commands.png
+
+   Figure 16: Template library plugin commands
+
+Template library authentication
+-------------------------------
+When right clicking on any Template library plugin command (except from set API endpoint and clean login info commands),
+the extension will verify user's credentials if the data has been saved. So, the first time when user wants to use
+the plugin, he will be offered a set of options to select the prefferd authentication method for the Template library.
+Since Template library auth works through KeyCloak, there can be multiple login methods. You can login with:
+
+- XLAB KeyCloak native credentials (available at https://openid-radon.xlab.si/auth/realms/master/account)
+- RADON and other identity providers that are connected to the XLAB KeyCloak
+- Native Template library credentials (a new user can be created by following these instructions: https://template-library-radon.xlab.si/)
+
+.. figure:: imgs/tl/auth_methods.png
+
+   Figure 17: Template library plugin auth
+
+If the login does not succeed, you will be warned and will have to login again. If the login succeeds, the KeyCloak auth cookies
+will be stored into the local storage and next time you invoke the any plugin command, you won't have to login again. But if you
+for instance set Template library API endpoint to something else or if you wish to login as another KeyCLoak user, the it is wise
+to clear saved login data by invoking the "Delete login info" action. If you log in as a native user, no data will be saved and
+you will have to login again every time you use the plugin.
+
+.. figure:: imgs/tl/login_password.png
+
+   Figure 18: Password prompt
+
+.. figure:: imgs/tl/login_success.png
+
+   Figure 19: Login success
+
+Template library set REST API endpoint
+--------------------------------------
+This command is used to set TPS REST API endpoint that will be used for executing the TPS HTTP requests. The
+default value here is `https://template-library-radon.xlab.si/api` which is pointing to the public TPS REST API URL.
+This command was meant mostly for testing different versions of TPS API so currently there is no need to change it.
+
+.. figure:: imgs/tl/set_api_endpoint.png
+
+   Figure 20: Set TPS REST API endpoint
+
+Template library config actions
+-------------------------------
+If you choose this option the TPS actions can be invoked via JSON config file. If you right clicked on the JSON
+file (from the editor or from the file explorer) you will be offered to chose it as a config file. If not, you will
+be asked to select this configuration file from other folders.
+
+JSON object that is present in the config file should follow an exact structure with which depends on the type of the action.
+The JSON keys specified are not mutually exclusive so you can execute multiple TPS actions with one JSON config file.
+
+Create template JSON config
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+JSON object for creating a template must have all these keys:
+
++---------------------------------+-----------------------------------------------------------------+
+| JSON key                        | Description                                                     |
++=================================+=================================================================+
+| **upload_template_name**        | Template name you want to create                                |
++---------------------------------+-----------------------------------------------------------------+
+| **upload_template_description** | Template description                                            |
++---------------------------------+-----------------------------------------------------------------+
+| **upload_template_type_name**   | Template type name (e.g. node, relationship, csar,...)          |
++---------------------------------+-----------------------------------------------------------------+
+| **upload_public_access**        | Make template publicly visible for other TPS users (true/false) |
++---------------------------------+-----------------------------------------------------------------+
+
+Example:
+
+.. code-block:: json
+    {
+        "upload_template_name": "aws_bucket",
+        "upload_template_description": "AWS bucket node",
+        "upload_template_type_name": "node",
+        "upload_public_access": "true"
+    }
+
+.. figure:: imgs/tl/upload_config.png
+
+   Figure 21: Upload config action
+
+Upload template version JSON config
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+When uploading a template version you can use the following keys (`upload_readme_file` and `upload_implementation_files` are optional).
+
++---------------------------------+--------------------------------------------------------------------------------------+
+| JSON key                        | Description                                                                          |
++=================================+======================================================================================+
+| **upload_version_name**         | Semantic version name                                                                |
++---------------------------------+--------------------------------------------------------------------------------------+
+| **upload_readme_file**          | Optional path to README file to upload                                               |
++---------------------------------+--------------------------------------------------------------------------------------+
+| **upload_template_file**        | TOSCA YAML service template file or compressed TOSCA Cloud Service Archive (CSAR)    |
++---------------------------------+--------------------------------------------------------------------------------------+
+| **upload_implementation_files** | Optional JSON array of paths to TOSCA model implementation files (Ansible playbooks) |
++---------------------------------+--------------------------------------------------------------------------------------+
+
+Example:
+
+.. code-block:: json
+    {
+        "upload_version_name": "2.1.5",
+        "upload_readme_file": "./aws_bucket/README.md",
+        "upload_template_file": "./aws_bucket/service_template.yaml",
+        "upload_implementation_files": [
+            "./aws_bucket/playbooks/create.yaml",
+            "./aws_bucket/playbooks/delete.yaml"
+        ]
+    }
+
+.. figure:: imgs/tl/upload_success.png
+
+   Figure 22: Successful template version upload
+
+Download template version JSON config
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+When downloading template version files you will get all version files (TOSCA template and playbooks) compressed in a zip
+file (if you provided just a CSAR without implementation files, you will get back this CSAR).
+
++----------------------------+------------------------------------------------------+
+| JSON key                   | Description                                          |
++============================+======================================================+
+| **download_template_name** | Name of the template you want to download            |
++----------------------------+------------------------------------------------------+
+| **download_version_name**  | Semantic template version you want to get files from |
++----------------------------+------------------------------------------------------+
+| **download_path**          | Path where downloaded file will be stored            |
++----------------------------+------------------------------------------------------+
+
+Example:
+
+.. code-block:: json
+    {
+        "download_template_name": "aws_bucket",
+        "download_version_name": "2.1.5",
+        "download_path": "./AwsBucket.zip"
+    }
+
+.. figure:: imgs/tl/download_config.png
+
+   Figure 23: Download config action
+
+.. figure:: imgs/tl/download_success.png
+
+   Figure 24: Successful template version download
+
+Template library interactive actions
+------------------------------------
+This TPS RADON IDE extension command will guide you through an interactive Eclipse Theia tasks, where you will be able
+to create templates, upload template versions or download version files from Template library service. More images
+from the plugin are can be found here: `https://github.com/radon-h2020/radon-template-library-publishing-service-plugin <https://github.com/radon-h2020/radon-template-library-publishing-service-plugin>`_.
+
+Template library delete login info
+----------------------------------
+This Template library plugin command will make sure that the saved login data gets deleted (e.g. KeyCloak cookies). After
+that you will have to login again if you activate any TPS commands.
+
 Deploy the application
 """"""""""""""""""""""
 
@@ -117,7 +300,7 @@ During the deployment process, the CSAR will be published to the Template Librar
 
 .. figure:: imgs/Deploy_CSAR_light.jpg
 
-   Figure 16: Deploy of the CSAR.
+   Figure 25: Deploy of the CSAR.
 
 Other RADON Commands
 """"""""""""""""""""
@@ -128,7 +311,4 @@ From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (F
 
 .. figure:: imgs/RADON_menu_light.jpg
 
-   Figure 17: RADON menu in the command palette.
-
-   
-   
+   Figure 26: RADON menu in the command palette.
