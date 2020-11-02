@@ -127,7 +127,7 @@ After the deployment has succeeded, the defined test is executed and the results
 The complete functionality of the tool is described in the `CTT documentation <https://continuous-testing-tool.readthedocs.io/en/latest/>`_.
 
 In this documentation, we go through the test of the "ServerlessToDoListAPI" and an endpoint test that makes sure that the deployment was successful. The SUT is FaaS-based implementation of a ToDo-list using AWS services, especially AWS lambda functions. The TI consists of a Docker container of a test agent for CTT that is deployed on top of an AWS EC2 instance.
-T
+
 To make this example work, some information is needed beforehand: AWS Access Key ID, AWS Secret Access Key, AWS EC2 SSH Key Type (e.g., ``OPENSSH``, ``RSA``), AWS EC2 SSH Key, AWS EC2 SSH Key Name, AWS VPC Subnet ID.
 
 The concrete steps are as follows:
@@ -137,7 +137,7 @@ In order to use CTT in the context of the RADON IDE, some credentials need to be
 In the future, this step will be made more comfortable to conduct. 
 The said credentials are required in order to deploy the SUT and the TI on the respective service providers’ infrastructures (e.g., AWS).
 
-These credentials need to be filled in into the workspace configuration devfile.yaml before the workspace is created.
+These credentials need to be filled in into the workspace configuration ``devfile.yaml`` before the workspace is created.
 The following code listing shows an exemplary excerpt of the ``devfile.yaml``’s CTT ``env``-section on how the fields need to be populated with the credentials. ::
 
   env:
@@ -199,7 +199,7 @@ The following code listing shows an exemplary CTT configuration file named ``ctt
     "result_destination_path": "serverless-test-results.zip"
   }
 
-Please note that the folder property is currently named ``repository_url`` for historical reasons. In the future, this porperty will be renamed.
+Please note that the folder property is currently named ``repository_url`` for technical reasons. In the future, this property will be renamed.
 
 The resulting scenario can be seen in Figure 17.
 
