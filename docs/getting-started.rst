@@ -106,16 +106,27 @@ To invoke the optimize functionality of the DT, make a right-click on the servic
 
 Defect Prediction Tool
 **********************
-The Defect Prediction Tool is used within the RADON IDE to check defects in a (Ansible) IaC script. To invoke the detection functionality of the DPT, make a right-click on a YAML-based Ansible file (i.e. .yaml file) or on the active editor with the open YAML file and select the Run Detection option (Figure 14).
-The results (i.e., the metrics extracted from the script and defect-proneness) will be displayed in a new active tab(Figure 15).
+The Defect Prediction Tool is used within the RADON IDE to check defects in Ansible and Tosca IaC scripts. 
+To invoke the detection functionality of the DPT, make a right-click on a YAML-based Ansible file (i.e. .yaml file) or a CSAR folder (i.e., .csar file). 
+Alternatively, you can run the detection from a single Ansible playbook from the active editor with the open YAML file and select the Run Detection option (Figure 14).
+The results (i.e., the metrics extracted from the script and defect-proneness) will be displayed in a new active tab (Figure 15).
 
 .. figure:: imgs/DPT_detection_light.jpg
 
-   Figure 14: Check defects by means of DPT
+   Figure 14: Check defects on an Ansible playbook by means of DPT
    
 .. figure:: imgs/DPT_output_light.jpg
 
    Figure 15: Defect Prediction Tool output window.
+
+.. figure:: imgs/DPT_detection_csar_dark.png
+   
+   Figure X: Check defects in a Cloud Service Archive by means of DPT
+
+.. figure:: imgs/DPT_output_csar_dark.png
+
+   Figure Y: Defect Prediction Tool output window for CSAR files.
+
 
 Deploy the application
 """"""""""""""""""""""
