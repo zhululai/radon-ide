@@ -109,6 +109,69 @@ The results (i.e., the metrics extracted from the script and defect-proneness) w
 
    Figure 15: Defect Prediction Tool output window.
 
+xOpera SaaS
+***********
+
+The xOpera SaaS orchestrator is used to deploy the application blueprint (CSAR)
+within the RADON IDE. Initially, the TOSCA opera orchestrator was available
+only as a CLI tool (it can be be downloaded from the Python Package Index:
+https://pypi.org/project/opera/)
+
+The SaaS orchestrator has been developed with the integration in mind and
+includes the API allowing managing all orchestrator functions and the
+integration with KeyCloak identity manager that allows easy integration with
+other identity management services.
+
+Apart from Identity Manager (KeyCloak) and a web GUI, the orchestrator has also
+Che and Visual Studio Code plugin that provides the ability to create and run
+deployment projects created inside the SaaS orchestrator.
+
+There are currently two commands that can be invoked from the explorer Eclipse
+Che Theia/Visual Studio Code context. These are:
+
+- "xOpera SaaS: Create project from CSAR"
+- "xOpera SaaS: Delete login info"
+
+The authentication to the SaaS component is performed in the similar way as
+this is done for the Template library. This means that when using the SaaS
+plugin the first time, the user will be prompted to select his preferred way
+of logging in. This can be either through an XLAB KeyCloak instance or through
+any of the connected identity providers (like RADON IDE KeyCloak). After that
+the login data will be saved and the user will be able to invoke the plugin
+commands (if the user would want to remove his saved login data he could click
+on the "xOpera SaaS: Delete login info" option).
+
+The main command is "xOpera SaaS: Create project from CSAR". By invoking this,
+the plugin currently allows users to:
+
+- create a new workspace
+- create a new project in a new or existing workspace
+- deploy a project
+
+The functions through the plugin are a bit limited, as it is more convenient
+than other actions are performed through the Opera SaaS web interface.
+
+.. figure:: imgs/xopera-saas/deploy_csar.png
+
+   Figure 16: Deployment of the CSAR.
+
+User can invoke the main plugin actions by right clicking on the compressed
+TOSCA CSAR (file should include .zip or .csar extension). Then the plugin will
+interactively guide him through the creation of workspace and the project.
+
+.. figure:: imgs/xopera-saas/create_project.png
+
+   Figure 17: Creating a new project.
+
+After that you will be asked if you want to deploy the CSAR from the project.
+The deployment process starts right away and gives you the deployment outputs
+from the xOpera SaaS orchestrator. Then the plugin will then redirect you to
+the SaaS UI where you will be able to see your created workspace and project.
+
+.. figure:: imgs/xopera-saas/redirect.png
+
+   Figure 18: The xOpera SaaS plugin redirection.
+
 Deploy the application
 """"""""""""""""""""""
 
@@ -117,7 +180,7 @@ During the deployment process, the CSAR will be published to the Template Librar
 
 .. figure:: imgs/Deploy_CSAR_light.jpg
 
-   Figure 16: Deploy of the CSAR.
+   Figure 19: Deploy of the CSAR.
 
 Other RADON Commands
 """"""""""""""""""""
@@ -128,7 +191,7 @@ From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (F
 
 .. figure:: imgs/RADON_menu_light.jpg
 
-   Figure 17: RADON menu in the command palette.
+   Figure 20: RADON menu in the command palette.
 
    
    
