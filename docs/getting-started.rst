@@ -17,7 +17,7 @@ After receiving the credentials, login to the RADON IDE (Figure 1) connecting to
 
 Create a RADON workspace
 """"""""""""""""""""""""
-In the Eclipse Che dashboard select *Get Started* tab and then *Custom Workspace*. Copy the URL of the *RADON Devfile* available `here <https://raw.githubusercontent.com/radon-h2020/radon-ide/master/devfiles/radon/v0.0.2/devfile.yaml>`_ and paste it in the field *URL of devfile*
+In the Eclipse Che dashboard select *Get Started* tab and then *Custom Workspace*. Copy the URL of the *RADON Devfile* available `here <https://raw.githubusercontent.com/radon-h2020/radon-ide/master/devfiles/radon/v0.0.3/devfile.yaml>`_ and paste it in the field *URL of devfile*
 under *Devfile* section. Then click on *Load devfile* and once the RADON devfile has been loaded click on the *Create & Open* button (Figure 3).
 
 .. figure:: imgs/LoadRADONDevfile.jpg
@@ -32,6 +32,7 @@ As depicted in Figure 4, a RADON workspace is started. It provides the “radon-
 
 How to launch RADON tools 
 """""""""""""""""""""""""
+
 Graphical Modeling Tool
 ***********************
 The GMT can be used within the RADON IDE to model an application. To launch the GMT, click on the *radon-gmt* option, present on the *My Workspace* right panel, as depicted in Figure 5.
@@ -44,9 +45,14 @@ The browser window of the GMT will be opened (Figure 6) to create or adapt exist
 
 .. figure:: imgs/GMT.jpg
 
-   Figure 6: GMT Dashboard.
+   Figure 6: GMT Dashboard: List of available RADON Models.
 
-The *Export to Filesystem* functionality (Figure 7), provided by the GMT permits to package and save a CSAR of a selected RADON Model to the workspace to process it using other RADON tools or to deploy it using the Orchestrator. The RADON model will be export in a CSAR file and will be store in the *radon-csar* folder (Figure 8).
+GMT is a web-based environment to graphically model TOSCA topologies.
+Follow the official `user guide <https://winery.readthedocs.io/en/latest/user/index.html>`_ to learn how to use the tool.
+
+One important aspect is the *Export to Filesystem* functionality (Figure 7).
+It permits to package and save a CSAR of a selected RADON Model to the workspace to process it using other RADON tools or to deploy it using the Orchestrator.
+The RADON model will be exported in a CSAR file and will be store in the *radon-csar* folder (Figure 8).
 
 .. figure:: imgs/GMT_Export.jpg
 
@@ -79,6 +85,8 @@ To verify that the RADON model conforms to these CDL specifications, make a righ
 
    Figure 11: RADON Verification Tool output panel.
 
+In addition to the verification mode of the tool, the VT also allows users to search for corrections to a RADON model and to learn additional constraints in a CDL specification. These two modes can be launched in a similar way, by selecting the *Correct* or *Learn* option after right-clicking on a .cdl file.
+
 Decomposition Tool
 ******************
 The Decomposition Tool is used within the RADON IDE to optimize the deployment of a RADON model. To get started, you can clone the `decomposition tool sample project <https://github.com/radon-h2020/demo-decomposition-tool-sample-project.git>`_ in the workspace, which contains a *demo-app* project. To clone this project use the Git functionalities provided in the workspace as described below:
@@ -98,17 +106,20 @@ To invoke the optimize functionality of the DT, make a right-click on the servic
 
 Defect Prediction Tool
 **********************
-The Defect Prediction Tool is used within the RADON IDE to check defects in a (Ansible) IaC script. To invoke the detection functionality of the DPT, make a right-click on a YAML-based Ansible file (i.e. .yaml file) or on the active editor with the open YAML file and select the Run Detection option (Figure 14).
-The results (i.e., the metrics extracted from the script and defect-proneness) will be displayed in a new active tab(Figure 15).
+The Defect Prediction Tool is used within the RADON IDE to check defects in Ansible and Tosca IaC scripts. 
+To invoke the detection functionality of the DPT, make a right-click on a YAML-based Ansible file (i.e. .yaml file) or a CSAR folder (i.e., .csar file). 
+Alternatively, you can run the detection from a single Ansible playbook from the active editor with the open YAML file and select the Run Detection option (Figure 14).
+The results (i.e., the metrics extracted from the script and defect-proneness) will be displayed in a new active tab (Figure 15).
 
 .. figure:: imgs/DPT_detection_light.jpg
 
-   Figure 14: Check defects by means of DPT
+   Figure 14: Check defects on an Ansible playbook by means of DPT
    
 .. figure:: imgs/DPT_output_light.jpg
 
    Figure 15: Defect Prediction Tool output window.
 
+<<<<<<< HEAD
 Template library
 ****************
 The Template library RADON IDE plugin is used for communication between Template library and the RADON IDE (Eclipse Che). Using the plugin, the user is able to
@@ -291,6 +302,16 @@ Template library delete login info
 ----------------------------------
 This Template library plugin command will make sure that the saved login data gets deleted (e.g. KeyCloak cookies). After
 that you will have to login again if you activate any TPS commands.
+=======
+.. figure:: imgs/DPT_detection_csar_dark.png
+   
+   Figure X: Check defects in a Cloud Service Archive by means of DPT
+
+.. figure:: imgs/DPT_output_csar_dark.png
+
+   Figure Y: Defect Prediction Tool output window for CSAR files.
+
+>>>>>>> master
 
 Deploy the application
 """"""""""""""""""""""
@@ -311,4 +332,11 @@ From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (F
 
 .. figure:: imgs/RADON_menu_light.jpg
 
+<<<<<<< HEAD
    Figure 26: RADON menu in the command palette.
+=======
+   Figure 17: RADON menu in the command palette.
+
+   
+   
+>>>>>>> master

@@ -118,6 +118,62 @@ components:
                     name: projects-storage-vt
     type: kubernetes
     alias: radon-vt
+  - endpoints:
+      - name: radon-ctt
+        port: 18080
+        attributes:
+          protocol: http
+          public: 'true'
+          discoverable: 'false'
+          secure: 'false'
+    referenceContent: |
+      ---
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: ctt-deployment
+        labels:
+          app: ctt
+          tier: frontend
+      spec:
+        replicas: 1
+        selector:
+          matchLabels:
+            app: ctt
+            tier: frontend
+        template:
+          metadata:
+            labels:
+              app: ctt
+              tier: frontend
+          spec:
+            volumes:
+              - name: projects-storage-ctt
+                persistentVolumeClaim:
+                  claimName: projects
+            containers:
+              - name: ctt
+                image: radonconsortium/radon-ctt:che
+                imagePullPolicy: Always
+                ports:
+                  - containerPort: 18080
+                env:
+                  - name: OPERA_SSH_USER
+                    value: "ubuntu"
+                  - name: OPERA_SSH_IDENTITY_FILE
+                    value: "/tmp/aws-ec2"
+                  - name: AWS_ACCESS_KEY_ID
+                    value: ""
+                  - name: AWS_SECRET_ACCESS_KEY
+                    value: ""
+                  - name: SSH_PRIV_KEY
+                    value: >
+                      EC2_SSH_PRIVATE_KEY_WITHOUT_HEADER_AND_FOOTER
+                volumeMounts:
+                  - mountPath: "/projects"
+                    name: projects-storage-ctt
+    type: kubernetes
+    alias: radon-ctt   
   - type: chePlugin
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-vt/latest/meta.yaml
@@ -134,4 +190,15 @@ components:
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-menu/latest/meta.yaml
     alias: radon-menu
+  - type: chePlugin
+    reference: >-
+      https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-xopera-saas/latest/meta.yaml
+    alias: radon-xopera-saas
+  - type: chePlugin
+    reference: >-
+      https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-template-library/latest/meta.yaml
+    alias: radon-template-library-plugin
+  - type: chePlugin
+    reference: >-
+      https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-ctt/latest/meta.yaml
 apiVersion: 1.0.0
