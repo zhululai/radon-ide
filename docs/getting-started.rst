@@ -119,7 +119,14 @@ The results (i.e., the metrics extracted from the script and defect-proneness) w
 
    Figure 15: Defect Prediction Tool output window.
 
-<<<<<<< HEAD
+.. figure:: imgs/DPT_detection_csar_dark.png
+   
+   Figure X: Check defects in a Cloud Service Archive by means of DPT
+
+.. figure:: imgs/DPT_output_csar_dark.png
+
+   Figure Y: Defect Prediction Tool output window for CSAR files.
+
 Template library
 ****************
 The Template library RADON IDE plugin is used for communication between Template library and the RADON IDE (Eclipse Che). Using the plugin, the user is able to
@@ -302,16 +309,6 @@ Template library delete login info
 ----------------------------------
 This Template library plugin command will make sure that the saved login data gets deleted (e.g. KeyCloak cookies). After
 that you will have to login again if you activate any TPS commands.
-=======
-.. figure:: imgs/DPT_detection_csar_dark.png
-   
-   Figure X: Check defects in a Cloud Service Archive by means of DPT
-
-.. figure:: imgs/DPT_output_csar_dark.png
-
-   Figure Y: Defect Prediction Tool output window for CSAR files.
-
->>>>>>> master
 
 Deploy the application
 """"""""""""""""""""""
@@ -332,11 +329,4 @@ From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (F
 
 .. figure:: imgs/RADON_menu_light.jpg
 
-<<<<<<< HEAD
    Figure 26: RADON menu in the command palette.
-=======
-   Figure 17: RADON menu in the command palette.
-
-   
-   
->>>>>>> master
