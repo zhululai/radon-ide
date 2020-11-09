@@ -16,8 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "radon-menu" is now active!');
 
-	context.subscriptions.push(commands.registerCommand('radon-menu.deployCSAR', async (uri?: Uri) => {
-		//let csarRefs:helper.CSAR_References={templateName:'',versionName:''};
+	context.subscriptions.push(commands.registerCommand('radon-menu.triggerCI', async (uri?: Uri) => {
 		let csarRefs = {} as CSAR_References;
 		
 		if(uri){
@@ -80,13 +79,13 @@ export function activate(context: vscode.ExtensionContext) {
 
 	}))
 
-	let disposableDeployStatus = vscode.commands.registerCommand('radon-menu.deployStatus', () => {
+	let disposableDeployStatus = vscode.commands.registerCommand('radon-menu.CIStatus', () => {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
 		//vscode.env.openExternal(vscode.Uri.parse("https://github.com/radon-h2020/radon-csars/blob/master/README.md"));
-		vscode.env.openExternal(vscode.Uri.parse("https://github.com/radon-h2020/radon-ide/blob/master/deploymentStatus/README.md"));
-		vscode.window.showInformationMessage('Opened deployment page');
+		vscode.env.openExternal(vscode.Uri.parse("https://github.com/radon-h2020/radon-ide/blob/master/CIStatus/README.md"));
+		vscode.window.showInformationMessage('Opened CI Status page');
 	});
 
 

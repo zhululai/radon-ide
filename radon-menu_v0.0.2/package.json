@@ -11,8 +11,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:radon-menu.deployCSAR",
-		"onCommand:radon-menu.deployStatus",
+		"onCommand:radon-menu.triggerCI",
+		"onCommand:radon-menu.CIStatus",
 		"onCommand:radon-menu.startHelp",
 		"onCommand:radon-menu.openMonitoring"
 	],
@@ -22,10 +22,10 @@
 			"commandPalette": [
 				{
 					"when": "resourceExtname == .csar && resourceSet",
-					"command": "radon-menu.deployCSAR"
+					"command": "radon-menu.triggerCI"
 				},
 				{
-					"command": "radon-menu.deployStatus"
+					"command": "radon-menu.CIStatus"
 				},
 				{
 					"command": "radon-menu.startHelp"
@@ -37,27 +37,27 @@
 			"explorer/context": [
 				{
 					"when": "resourceExtname == .csar",
-					"command": "radon-menu.deployCSAR",
+					"command": "radon-menu.triggerCI",
 					"group": "myGroup@1"
 				}
 			],
 			"editor/context": [
 				{
-					"command": "radon-menu.deployCSAR",
+					"command": "radon-menu.triggerCI",
 					"group": "myGroup@2"
 				}
 			]
 		},
 		"commands": [
 			{
-				"command": "radon-menu.deployCSAR",
+				"command": "radon-menu.triggerCI",
 				"category": "RADON",
-				"title": "Deploy CSAR"
+				"title": "Trigger CI"
 			},
 			{
-				"command": "radon-menu.deployStatus",
+				"command": "radon-menu.CIStatus",
 				"category": "RADON",
-				"title": "Show Deployment Status"
+				"title": "Show CI Status"
 			},
 			{
 				"command": "radon-menu.startHelp",
