@@ -1,9 +1,9 @@
-The following documentation explains how to use the alpha version of the RADON integrated framework by means of the RADON IDE.
+The following documentation explains how to use the beta version of the RADON integrated framework by means of the RADON IDE.
 
 Access to the RADON IDE  
 """""""""""""""""""""""
 
-Use the following `form <https://docs.google.com/forms/d/1uwmzq8DHY-UIQB_iIASb9f6LRcnck4YvxU6PvXX-NS8/edit>`_ to request access to the RADON IDE. An account will be created and the credentials will be sent via the email specified in the form.
+Use the following `form <https://mailchi.mp/fe5357445dba/radon-ide-access-request/>`_ to request access to the RADON IDE. An account will be created and the credentials will be sent via the email specified in the form.
 
 After receiving the credentials, login to the RADON IDE (Figure 1) connecting to the `Che Login page <http://che-che.217.172.12.178.nip.io>`_ to access the main Che dashboard (Figure 2). In the *Workspaces tab* the list of already created workspaces is visible and it is possible to create new ones. 
 
@@ -24,7 +24,7 @@ under *Devfile* section. Then click on *Load devfile* and once the RADON devfile
 
    Figure 3: Create a RADON Workspace.
 
-As depicted in Figure 4, a RADON workspace is started. It provides the “radon-particles” modeling project with a directory structure compliant with the GMT and the set of integrated RADON tools enabled (i.e., GMT, VT, DT, DPT).
+As depicted in Figure 4, a RADON workspace is started. It provides the “radon-particles” modeling project with a directory structure compliant with the GMT and the set of integrated RADON tools enabled (i.e., GMT, VT, DT, DPT, CTT, Delivery Toolchain).
 
 .. figure:: imgs/IDE_RADONWorkspace_Light.jpg
 
@@ -68,7 +68,7 @@ Verification Tool
 The Verification Tool is used within the RADON IDE to verify that a RADON model conforms to the CDL specifications. The .cdl files defining the CDL specifications for a specific RADON model can be edited, imported and updated within the workspace of IDE (Figure 9). To get started, you can clone the `verification tool sample project <https://github.com/radon-h2020/demo-verification-tool-sample-project.git>`_ in the workspace, which contains a sample TOSCA model and a CDL specification. To clone this project use the Git functionalities provided in the workspace as described below:
 
 1. Press *Ctlt+Shift+P* to open the command palette. Select the *Git:Clone* command and type the Repository URL of the verification tool sample project. 
-2. Press *Enter* to clone the project in the workspave
+2. Press *Enter* to clone the project in the workspace
 
 
 .. figure:: imgs/VT_cdl_light.jpg
@@ -92,7 +92,7 @@ Decomposition Tool
 The Decomposition Tool is used within the RADON IDE to optimize the deployment of a RADON model. To get started, you can clone the `decomposition tool sample project <https://github.com/radon-h2020/demo-decomposition-tool-sample-project.git>`_ in the workspace, which contains a *demo-app* project. To clone this project use the Git functionalities provided in the workspace as described below:
 
 1. Press *Ctlt+Shift+P* to open the command palette. Select the *Git:Clone* command and type the Repository URL of the decomposition tool sample project. 
-2. Press *Enter* to clone the project in the workspave
+2. Press *Enter* to clone the project in the workspace
 
 To invoke the optimize functionality of the DT, make a right-click on the service template (.yaml) and select the Optimize option (Figure 12). The service template will be updated according to the optimal deployment scheme, and the minimum operating cost will be printed in the Output window (View → Output) as depicted in Figure 13.
    
@@ -121,11 +121,40 @@ The results (i.e., the metrics extracted from the script and defect-proneness) w
 
 .. figure:: imgs/DPT_detection_csar_dark.png
    
-   Figure X: Check defects in a Cloud Service Archive by means of DPT
+   Figure 16: Check defects in a Cloud Service Archive by means of DPT
 
 .. figure:: imgs/DPT_output_csar_dark.png
 
-   Figure Y: Defect Prediction Tool output window for CSAR files.
+   Figure 17: Defect Prediction Tool output window for CSAR files.
+
+Continuous Testing Tool 
+***********************
+
+The Continuous Testing Tool (CTT) is used within the RADON IDE to define and execute tests, which are specified in a CSAR for a system under test (SUT). To get started, you can clone the `CTT sample project <https://github.com/radon-h2020/demo-ctt-imageresize>`_. To clone this project use the Git functionalities provided in the workspace as described below:
+
+1. Press *Ctlt+Shift+P* to open the command palette. Select the *Git:Clone* command and type the above repository URL of the CTT sample project. 
+2. Press *Enter* to clone the project in the workspace
+
+In the folder *radon-ctt/*, you will find sample CSAR files for the SUT and the test infrastructure (TI). These files are exports from the service templates that can also be found in the RADON Particles. Hence, for using other SUT and TI CSAR files, users will need to export them via GMT. 
+
+To create a CTT configuration for an SUT CSAR file, make a right-click on the file, e.g., *sut-ec2.csar*, and select "Create test configuration" (Figure 18).
+
+.. figure:: imgs/CTT_create_config.png
+
+   Figure 18: Creating a configuration file template for a CSAR.
+
+You fill find a new configuration file next to the CSAR file, e.g., *sut-ec2_testconfig.yml*. Double-click on the configuration file and it will be shown in the editor. Once the configuration file has been completed, the execution can by triggered by a right-click on the file and selecting "Execute test configuration" (Figure 19). 
+
+.. figure:: imgs/CTT_trigger_execution.png
+
+   Figure 19: Executing CTT based on a configuration file.
+
+CTT will now execute all steps of the CTT workflow, including the deployment of the SUT and the CSAR, as well as executing the tests and fetching the results. After a successful execution, the results are stored in the configured folder (Figure 20).
+
+.. figure:: imgs/CTT_results.png
+
+   Figure 20: Results of the test execution.
+
 
 Template library
 ****************
@@ -154,7 +183,7 @@ commands that can be selected from the dropdown options and these are further ex
 
 .. figure:: imgs/tl/commands.png
 
-   Figure 16: Template library plugin commands
+   Figure 21: Template library plugin commands
 
 Template library authentication
 -------------------------------
@@ -169,7 +198,7 @@ Since Template library auth works through KeyCloak, there can be multiple login 
 
 .. figure:: imgs/tl/auth_methods.png
 
-   Figure 17: Template library plugin auth
+   Figure 22: Template library plugin auth
 
 If the login does not succeed, you will be warned and will have to login again. If the login succeeds, the KeyCloak auth cookies
 will be stored into the local storage and next time you invoke the any plugin command, you won't have to login again. But if you
@@ -179,11 +208,11 @@ you will have to login again every time you use the plugin.
 
 .. figure:: imgs/tl/login_password.png
 
-   Figure 18: Password prompt
+   Figure 23: Password prompt
 
 .. figure:: imgs/tl/login_success.png
 
-   Figure 19: Login success
+   Figure 24: Login success
 
 Template library set REST API endpoint
 --------------------------------------
@@ -193,7 +222,7 @@ This command was meant mostly for testing different versions of TPS API so curre
 
 .. figure:: imgs/tl/set_api_endpoint.png
 
-   Figure 20: Set TPS REST API endpoint
+   Figure 25: Set TPS REST API endpoint
 
 Template library config actions
 -------------------------------
@@ -232,7 +261,7 @@ Example:
 
 .. figure:: imgs/tl/upload_config.png
 
-   Figure 21: Upload config action
+   Figure 26: Upload config action
 
 Upload template version JSON config
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -265,7 +294,7 @@ Example:
 
 .. figure:: imgs/tl/upload_success.png
 
-   Figure 22: Successful template version upload
+   Figure 27: Successful template version upload
 
 Download template version JSON config
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -293,11 +322,11 @@ Example:
 
 .. figure:: imgs/tl/download_config.png
 
-   Figure 23: Download config action
+   Figure 28: Download config action
 
 .. figure:: imgs/tl/download_success.png
 
-   Figure 24: Successful template version download
+   Figure 29: Successful template version download
 
 Template library interactive actions
 ------------------------------------
@@ -354,7 +383,7 @@ than other actions are performed through the Opera SaaS web interface.
 
 .. figure:: imgs/xopera-saas/deploy_csar.png
 
-   Figure 16: Deployment of the CSAR.
+   Figure 30: Deployment of the CSAR.
 
 User can invoke the main plugin actions by right clicking on the compressed
 TOSCA CSAR (file should include .zip or .csar extension). Then the plugin will
@@ -362,7 +391,7 @@ interactively guide him through the creation of workspace and the project.
 
 .. figure:: imgs/xopera-saas/create_project.png
 
-   Figure 17: Creating a new project.
+   Figure 31: Creating a new project.
 
 After that you will be asked if you want to deploy the CSAR from the project.
 The deployment process starts right away and gives you the deployment outputs
@@ -371,26 +400,83 @@ the SaaS UI where you will be able to see your created workspace and project.
 
 .. figure:: imgs/xopera-saas/redirect.png
 
-   Figure 18: The xOpera SaaS plugin redirection.
+   Figure 32: The xOpera SaaS plugin redirection.
 
 
-Deploy the application
+Trigger CI
 """"""""""""""""""""""
 
-To start the deployment process, select the CSAR, stored in the radon-csar project, make a right-click on it and select the *Deploy* option as depicted in Figure 21.
-During the deployment process, the CSAR will be published to the Template Library and a Jenkins job will be triggered to manage the deployment of the CSAR with the Orchestrator.
+The user can trigger the CI and start the deployment process using a Jenkins job. The use of CI jobs provides more flexability, for instance it is possible to include different tollgates in the CI pipeline before deploying (i.e. the job pipelines can be complex as you want).
+To trigger the CI process, select the CSAR, stored in the radon-csar project, make a right-click on it and select the *Trigger CI* option as depicted in Figure 33.
 
-.. figure:: imgs/Deploy_CSAR_light.jpg
+.. figure:: imgs/TriggerCI.jpg
 
-   Figure 25: Deploy of the CSAR.
+   Figure 33: Trigger CI.
+
+During the CI process, the system asks the user if the selected CSAR has been already uploaded on the Template Library (Figure 34).
+
+.. figure:: imgs/CheckIfCSARUploaded.jpg
+
+   Figure 34: Check if the CSAR has been upload on the Template Library.
+
+If the CSAR is already uploaded, the system asks the user to insert the name of the CSAR to deploy via a Jenkins job after having performed the login with the Template Library (Figure 35). It is possible to specify part of the CSAR name to get the list of available CSARs uploaded on the Template Library.
+
+.. figure:: imgs/SelectCSARFromTL.jpg
+
+   Figure 35: Select CSAR from Template Library
+
+Once selected the CSAR, the system asks the user to select one of the available versions of the CSAR (Figure 36). 
+
+.. figure:: imgs/SelectCSARVersion.jpg
+
+   Figure 36: Select CSAR version from Template Library
+
+Once selected the CSAR version, the system asks the user to specify a set of Jenkins configurations to trigger the CI job. In particular, the user has to specify:
+
+- the URL of the Jenkins instance to use (Figure 37);
+- the Jenkins user credentials, i.e. username and password, (Figure 38 and Figure 39);
+- the Jenkins job to trigger (Figure 40);
+- the token to run the job (Figure 41).
+
+.. figure:: imgs/SetJenkinsJob.jpg
+
+   Figure 37: Insert Jenkins URL
+
+.. figure:: imgs/SetJenkinsUsername.jpg
+
+   Figure 38: Insert Jenkins credential: username
+
+.. figure:: imgs/SetJenkinsPassword.jpg
+
+   Figure 39: Insert Jenkins credential: password
+
+.. figure:: imgs/SetJenkinsJob.jpg
+
+   Figure 40: Insert Jenkins job to trigger 
+
+.. figure:: imgs/SetJenkinsToken.jpg
+
+   Figure 41: Insert Jenkins job's token
+
+Finally, the specified Jenkins job is triggered to manage the deployment of the CSAR with the Orchestrator.
+
+If the selected CSAR was not uploaded yet on the Template Library, the system guides the user to create a new whole CSAR template or a new version for the CSAR (Figure 42). The created new template (or new version) is then uploaded on the Template Library and, as mention above, the system asks the user to insert the Jenkins configurations to trigger the CI job. 
+
+.. figure:: imgs/CSARNotUploaded.jpg
+
+   Figure 42: Create a new CSAR Template or new CSAR version
+
+
 
 Other RADON Commands
 """"""""""""""""""""
-From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (Figure 17) is available to perform the following actions:
+From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (Figure 43) is available to perform the following actions:
 
-- Visualize the status of the deployment of a CSAR by selecting the *Show Deployment Status* option. Once this command is selected, a browser window connecting to the output console of the Jenkins that manages the deployment process will be opened;
-- Open the RADON Help Page by selecting the *Open Help Page* option. Once this command is selected a browser window connecting to the RADON methodology, GitHub page will be opened.
+- Visualize the status of the CI process by selecting the *Show CI Status* option. Once this command is selected, a browser window connecting to a page showing the status of the Jenkins CI job will be opened;
+- Open the RADON Help Page by selecting the *Open Help Page* option. Once this command is selected a browser window connecting to the RADON methodology GitHub page will be opened;
+- Open the RADON Monitoring Page by selecting the *Open Monitoring Page* option. Once this command is selected a browser window connecting to the RADON Monitoring Dashboard will be opened.
 
-.. figure:: imgs/RADON_menu_light.jpg
 
-   Figure 26: RADON menu in the command palette.
+.. figure:: imgs/RADON_menu.jpg
+
+   Figure 43: RADON menu in the command palette.
