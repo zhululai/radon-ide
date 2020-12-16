@@ -412,7 +412,7 @@ Trigger CI
 * A user with execution access to jobs
 * A configured Jenkins job
 
-Setup guides can be found in `CI/CD templates https://github.com/radon-h2020/radon-cicd-templates`_ Here you can configure your own pipeline in the Jenkinsfile format. All tools have its corresponding folder where examples are listed. You as a user are free to cherrypick the code snippets in order to generate the ideal Jenkinsfile. Figure beneath depicts a configuration where a CSAR is fetched from Template Library and deployed to AWS cloud.
+Setup guides can be found in `CI/CD templates <https://github.com/radon-h2020/radon-cicd-templates>`_ `CI/CD templates https://github.com/radon-h2020/radon-cicd-templates`_ Here you can configure your own pipeline in the Jenkinsfile format. All tools have its corresponding folder where examples are listed. You as a user are free to cherrypick the code snippets in order to generate the ideal Jenkinsfile. Figure beneath depicts a configuration where a CSAR is fetched from Template Library and deployed to AWS cloud.
 
 .. figure:: imgs/PRQ_CI_CONFIG.png
 
