@@ -599,7 +599,7 @@ export function runCmd(cmd:any)
 }
 
 export async function getCrumb(jenkinsParams:JenkinsParams):Promise<any> {
-    var cmd = `curl --silent --cookie-jar `+ jenkinsParams.cookie_jar +` `+jenkinsParams.jenkinsURL+`crumbIssuer/api/xml?xpath=concat\(//crumbRequestField,%22:%22,//crumb\) -u `+jenkinsParams.jenkinsUsername+`:`+jenkinsParams.jenkinsPassword;  
+    var cmd = `curl --silent --cookie-jar `+ jenkinsParams.cookie_jar +` '`+jenkinsParams.jenkinsURL+`crumbIssuer/api/xml?xpath=concat\(//crumbRequestField,%22:%22,//crumb\)' -u `+jenkinsParams.jenkinsUsername+`:`+jenkinsParams.jenkinsPassword;  
     
     var result = runCmd(cmd);
     console.log("Get Jenkins crumb..."+result);
