@@ -406,12 +406,25 @@ the SaaS UI where you will be able to see your created workspace and project.
 Trigger CI
 """"""""""""""""""""""
 
-The user can trigger the CI and start the deployment process using a Jenkins job. The use of CI jobs provides more flexability, for instance it is possible to include different tollgates in the CI pipeline before deploying (i.e. the job pipelines can be complex as you want).
+**CI/CD preconditions**
+
+* A configured Jenkins server
+* A user with execution access to jobs
+* A configured Jenkins job
+
+Setup guides can be found in `CI/CD templates <https://github.com/radon-h2020/radon-cicd-templates>`_. Here you can configure your own pipeline in the Jenkinsfile format. All tools have its corresponding folder where examples are listed. You as a user are free to cherrypick the code snippets in order to generate the ideal Jenkinsfile. Figure beneath depicts a configuration where a CSAR is fetched from Template Library and deployed to AWS cloud.
+
+.. figure:: imgs/PRQ_CI_CONFIG.png
+
+**CI/CD execution**
+
+The user can trigger CI functionality through the IDE. The use of CI jobs provides more flexability, for instance it is possible to include different tollgates in the  deployment process (i.e. the job pipelines can be complex as you want).
 To trigger the CI process, select the CSAR, stored in the radon-csar project, make a right-click on it and select the *Trigger CI* option as depicted in Figure 33.
 
 .. figure:: imgs/TriggerCI.jpg
 
    Figure 33: Trigger CI.
+
 
 During the CI process, the system asks the user if the selected CSAR has been already uploaded on the Template Library (Figure 34).
 
