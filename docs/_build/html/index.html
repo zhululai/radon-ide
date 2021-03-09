@@ -70,7 +70,7 @@ These are the set of actions that can be performed by an authenticated RADON use
 <li><p><em>Graphical Modeling Tool</em>: integrated in the RADON IDE as a Kubernetes component. It enables the users to create, develop, and model TOSCA service templates (i.e. RADON models), representing the applications that are deployed using the RADON Orchestrator. The GMT is able to interact with files and folders from the “modeling project” inside the underlying Che workspace. It offers also the feature to package and save a CSAR of a selected RADON Model to the workspace in order to give the possibility to process it using other RADON tools or deploy it using the RADON Orchestrator.</p></li>
 <li><p><em>Verification Tool</em>: integrated in the RADON IDE with a Che plugin and a Kubernetes component. The users are able to run the verify and correct mode of the VT by right-clicking on any file with the extension “.cdl” and clicking on the <em>Verify</em> or <em>Correct</em> buttons in the resulting context menu. The result of the verification or correction task is then displayed in a new output sub-window.</p></li>
 <li><p><em>Decomposition Tool</em>: integrated in the RADON IDE with a Che plugin. It enables the users to access a public service that makes the DT available trough different programs, namely decomposition, optimization and enhancement using REST APIs. A user can perform a right-click on a service template (.yaml) and then click the “Optimize” button in the pop-up menu. After the optimization program completes, the service template is updated according to the optimal deployment scheme, and the minimum operating cost is printed in the “Output” window.</p></li>
-<li><p><em>Continuous Testing Tool</em>: integrated in the RADON IDE with a Che plugin. It enables users to execute tests specified in the RADON models. A user can perform a right-click on a CSAR file and select “Create test configuration” to obtain a CTT configuration file, which after being completed, can be executed again via a right-click on the configuration file and selecting “Execute test configuration”.  The results of the tests are stored in the project folder.</p></li>
+<li><p><em>Continuous Testing Tool</em>: integrated in the RADON IDE with a Che plugin. It enables users to execute tests specified in the RADON models. A user can create CTT configuration file, which after being completed, can be executed again via a right-click on the configuration file and selecting “Execute test configuration”.  The results of the tests are stored in the project folder.</p></li>
 <li><p><em>Defect Prediction Tool</em>: integrated in the RADON IDE with a Che plugin. It enables the users to identify potentially defective IaC blueprints. The user can interact with it by right-clicking on a YAML-based Ansible file and click <em>Run detection</em>. The results (i.e., the metrics extracted from the script and defect-proneness) are theb displayed in a new active tab.</p></li>
 <li><p><em>Delivery Toolchain</em>: a Che plugin has been developed to extend the Eclipse Che GUI with a  command to start the deployment process of a CSAR. The <em>Deploy</em> command appears in the command palette when the user selects a CSAR (a file with the .csar extension) within the workspace and makes a right-click on it. During the deployment process the selected CSAR is published to the <a class="reference external" href="https://template-library-radon.xlab.si/">Template Library</a> through the available API and a remote <a class="reference external" href="https://www.jenkins.io/">Jenkins</a> job is triggered to fetch the uploaded CSAR and deploy it with the Orchestrator.</p></li>
 </ul>
@@ -133,7 +133,7 @@ under <em>Devfile</em> section. Then click on <em>Load devfile</em> and once the
 <h4>Verification Tool<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p>The Verification Tool is used within the RADON IDE to verify that a RADON model conforms to the CDL specifications. The .cdl files defining the CDL specifications for a specific RADON model can be edited, imported and updated within the workspace of IDE (Figure 9). To get started, you can clone the <a class="reference external" href="https://github.com/radon-h2020/demo-verification-tool-sample-project.git">verification tool sample project</a> in the workspace, which contains a sample TOSCA model and a CDL specification. To clone this project use the Git functionalities provided in the workspace as described below:</p>
 <ol class="arabic simple">
-<li><p>Press <em>Ctlt+Shift+P</em> to open the command palette. Select the <em>Git:Clone</em> command and type the Repository URL of the verification tool sample project.</p></li>
+<li><p>Press <em>Ctrl+Shift+P</em> to open the command palette. Select the <em>Git:Clone</em> command and type the Repository URL of the verification tool sample project.</p></li>
 <li><p>Press <em>Enter</em> to clone the project in the workspace</p></li>
 </ol>
 <div class="figure align-default" id="id14">
@@ -154,7 +154,7 @@ under <em>Devfile</em> section. Then click on <em>Load devfile</em> and once the
 <h4>Decomposition Tool<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
 <p>The Decomposition Tool is used within the RADON IDE to optimize the deployment of a RADON model. To get started, you can clone the <a class="reference external" href="https://github.com/radon-h2020/demo-decomposition-tool-sample-project.git">decomposition tool sample project</a> in the workspace, which contains a <em>demo-app</em> project. To clone this project use the Git functionalities provided in the workspace as described below:</p>
 <ol class="arabic simple">
-<li><p>Press <em>Ctlt+Shift+P</em> to open the command palette. Select the <em>Git:Clone</em> command and type the Repository URL of the decomposition tool sample project.</p></li>
+<li><p>Press <em>Ctrl+Shift+P</em> to open the command palette. Select the <em>Git:Clone</em> command and type the Repository URL of the decomposition tool sample project.</p></li>
 <li><p>Press <em>Enter</em> to clone the project in the workspace</p></li>
 </ol>
 <p>To invoke the optimize functionality of the DT, make a right-click on the service template (.yaml) and select the Optimize option (Figure 12). The service template will be updated according to the optimal deployment scheme, and the minimum operating cost will be printed in the Output window (View → Output) as depicted in Figure 13.</p>
@@ -191,27 +191,92 @@ During the deployment process, the CSAR will be published to the Template Librar
 </div>
 <div class="section" id="id5">
 <h4>Continuous Testing Tool<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
-<p>The Continuous Testing Tool (CTT) is used within the RADON IDE to define and execute tests, which are specified in a CSAR for a system under test (SUT). To get started, you can clone the <a class="reference external" href="https://github.com/radon-h2020/demo-ctt-imageresize">CTT sample project</a>. To clone this project use the Git functionalities provided in the workspace as described below:</p>
-<ol class="arabic simple">
-<li><p>Press <em>Ctlt+Shift+P</em> to open the command palette. Select the <em>Git:Clone</em> command and type the above repository URL of the CTT sample project.</p></li>
-<li><p>Press <em>Enter</em> to clone the project in the workspace</p></li>
-</ol>
-<p>In the folder <em>radon-ctt/</em>, you will find sample CSAR files for the SUT and the test infrastructure (TI). These files are exports from the service templates that can also be found in the RADON Particles. Hence, for using other SUT and TI CSAR files, users will need to export them via GMT.</p>
-<p>To create a CTT configuration for an SUT CSAR file, make a right-click on the file, e.g., <em>sut-ec2.csar</em>, and select “Create test configuration” (Figure 17).</p>
+<p>The Continuous Testing Tool (CTT) provides the means to deploy the applicaiton that is supposed to be tested, the so-called system under test (SUT), and a testing agent, the so-called test infrastructure (TI), that executes the defined tests against the SUT.
+After the deployment has succeeded, the defined test is executed and the results are obtained.
+The complete functionality of the tool is described in the <a class="reference external" href="https://continuous-testing-tool.readthedocs.io/en/latest/">CTT documentation</a>.</p>
+<p>In this documentation, we go through the test of the “ServerlessToDoListAPI” and an endpoint test that makes sure that the deployment was successful. The SUT is FaaS-based implementation of a ToDo-list using AWS services, especially AWS lambda functions. The TI consists of a Docker container of a test agent for CTT that is deployed on top of an AWS EC2 instance.</p>
+<p>To make this example work, some information is needed beforehand: AWS Access Key ID, AWS Secret Access Key, AWS EC2 SSH Key Type (e.g., <code class="docutils literal notranslate"><span class="pre">OPENSSH</span></code>, <code class="docutils literal notranslate"><span class="pre">RSA</span></code>), AWS EC2 SSH Key, AWS EC2 SSH Key Name, AWS VPC Subnet ID.</p>
+<p>The concrete steps are as follows:</p>
+<p><strong>1. Preparing the Workspace with Credentials</strong>
+In order to use CTT in the context of the RADON IDE, some credentials need to be provided when the workspace is created.
+In the future, this step will be made more comfortable to conduct.
+The said credentials are required in order to deploy the SUT and the TI on the respective service providers’ infrastructures (e.g., AWS).</p>
+<p>These credentials need to be filled in into the workspace configuration <code class="docutils literal notranslate"><span class="pre">devfile.yaml</span></code> before the workspace is created.
+The following code listing shows an exemplary excerpt of the <code class="docutils literal notranslate"><span class="pre">devfile.yaml</span></code>’s CTT <code class="docutils literal notranslate"><span class="pre">env</span></code>-section on how the fields need to be populated with the credentials.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="p">:</span>
+ <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">OPERA_SSH_USER</span>
+   <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;ubuntu&quot;</span>
+ <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">OPERA_SSH_IDENTITY_FILE</span>
+   <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;/tmp/aws-ec2&quot;</span>
+ <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">AWS_ACCESS_KEY_ID</span>
+   <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;AKSDF4353SFD3NMGXHERWQ&quot;</span>
+ <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">AWS_SECRET_ACCESS_KEY</span>
+   <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;6QYMAS4sdfhAHDJ1L+pfgqZt/9OcxUN8a1/vg/ly&quot;</span>
+ <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">KEY_TYPE</span>
+   <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;OPENSSH&quot;</span>
+ <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">SSH_PRIV_KEY</span>
+   <span class="n">value</span><span class="p">:</span> <span class="o">&gt;</span>
+     <span class="n">c3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAA</span>
+     <span class="n">NhAAAAAwEAAQAAAxUA9DcKpAwyCTystithD</span>
+     <span class="p">[</span><span class="o">..</span><span class="p">]</span>
+     <span class="n">Akawm0cQ55NZ76el6jzUWBDePeT7mmWUCfm</span>
+     <span class="n">kVpfAebH2</span><span class="o">+</span><span class="n">m6</span><span class="o">/</span><span class="n">F</span><span class="o">/</span><span class="n">KpFE2Q8aFBhWSVD3SmX5</span>
+     <span class="n">YPAAAAAAECCwQ</span><span class="o">=</span>
+</pre></div>
+</div>
+<p>Once these variables are set, the workspace can be created.</p>
+<p><strong>2. Configuring the Test Scenario</strong>
+Once the workspace is started and completely loaded, we create a new directory that holds all files that are needed to execute CTT.
+In this example, we name it <code class="docutils literal notranslate"><span class="pre">ServerlessToDoList</span></code>.
+The CSAR files of the <em>Serverless ToDo-List API</em> service template and the <em>CTT Deployment Test Agent</em> are put into this directory, as well as an <code class="docutils literal notranslate"><span class="pre">inputs.yaml</span></code> file that provides some inputs needed for the deployment of the TI.
+It is necessary to fill in the fields <code class="docutils literal notranslate"><span class="pre">vpc_subnet_id</span></code> with the VPC subnet ID on AWS the instance is supposed to be deployed to, and <code class="docutils literal notranslate"><span class="pre">ssh_key_name</span></code> represents the SSH key name that is stored in AWS for deploying EC2 instances.
+The field <code class="docutils literal notranslate"><span class="pre">ssh_key_file</span></code> should stay as is.
+The following code listing shows an exemplary <code class="docutils literal notranslate"><span class="pre">inputs.yaml</span></code> file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="n">vpc_subnet_id</span><span class="p">:</span> <span class="s2">&quot;subnet-04706a8b41abdefa5&quot;</span>
+<span class="n">ssh_key_name</span><span class="p">:</span> <span class="s2">&quot;awsec2&quot;</span>
+<span class="n">ssh_key_file</span><span class="p">:</span> <span class="s2">&quot;/tmp/aws-ec2&quot;</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>The configuration of the CTT execution itself is specified by a YAML configuration file. In this file, the following properties need to be defined:</p>
+<ul class="simple">
+<li><p>Name for the test configuration [<code class="docutils literal notranslate"><span class="pre">name</span></code>]</p></li>
+<li><p>Folder, the artifacts are placed in [<code class="docutils literal notranslate"><span class="pre">repository_url</span></code>]</p></li>
+<li><p>SUT CSAR path (relative to the folder) [<code class="docutils literal notranslate"><span class="pre">sut_tosca_path</span></code>]</p></li>
+<li><p>SUT inputs file (optional, relative to the folder) [<code class="docutils literal notranslate"><span class="pre">sut_inputs_path</span></code>]</p></li>
+<li><p>TI CSAR path (relative to the folder) [<code class="docutils literal notranslate"><span class="pre">ti_tosca_path</span></code>]</p></li>
+<li><p>TI inputs file (optional, relative to the folder) [<code class="docutils literal notranslate"><span class="pre">ti_inputs_path</span></code>]</p></li>
+<li><p>Test Id of the test to be executed (not yet taken into account) [<code class="docutils literal notranslate"><span class="pre">test_id</span></code>]</p></li>
+<li><p>Results output file path (relative to configuration file) [<code class="docutils literal notranslate"><span class="pre">result_destination_path</span></code>]</p></li>
+</ul>
+<p>The following code listing shows an exemplary CTT configuration file named <code class="docutils literal notranslate"><span class="pre">ctt_config.yaml</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;ServerlessToDoList-DeploymentTest&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;repository_url&quot;</span><span class="p">:</span> <span class="s2">&quot;ServerlessToDoList&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sut_tosca_path&quot;</span><span class="p">:</span> <span class="s2">&quot;todolist.csar&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;ti_tosca_path&quot;</span><span class="p">:</span> <span class="s2">&quot;deploymentTestAgent.csar&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;ti_inputs_path&quot;</span><span class="p">:</span> <span class="s2">&quot;inputs.yaml&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;test_id&quot;</span><span class="p">:</span> <span class="s2">&quot;test_1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;result_destination_path&quot;</span><span class="p">:</span> <span class="s2">&quot;serverless-test-results.zip&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Please note that the folder property is currently named <code class="docutils literal notranslate"><span class="pre">repository_url</span></code> for technical reasons. In the future, this property will be renamed.</p>
+<p>The resulting scenario can be seen in Figure 17.</p>
 <div class="figure align-default" id="id22">
-<img alt="_images/CTT_create_config.png" src="_images/CTT_create_config.png" />
-<p class="caption"><span class="caption-text">Figure 17: Creating a configuration file template for a CSAR.</span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
+<img alt="_images/CTT_scenario.png" src="_images/CTT_scenario.png" />
+<p class="caption"><span class="caption-text">Figure 17: Severless ToDo-List API scenario in the RADON IDE</span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
 </div>
-<p>You fill find a new configuration file next to the CSAR file, e.g., <em>sut-ec2_testconfig.yml</em>. Double-click on the configuration file and it will be shown in the editor. Once the configuration file has been completed, the execution can by triggered by a right-click on the file and selecting “Execute test configuration” (Figure 18).</p>
+<p><strong>3. Executing CTT</strong></p>
+<p>After all preparations are finished, you can right-click on the <code class="docutils literal notranslate"><span class="pre">ctt_config.yaml</span></code> file and choose the option <code class="docutils literal notranslate"><span class="pre">RadonCTT:</span> <span class="pre">Execute</span> <span class="pre">test</span> <span class="pre">configuration</span></code>.</p>
+<p>The progress can be seen in the output panel (see Figure 18) and a progress bar appears on the lower right.</p>
 <div class="figure align-default" id="id23">
-<img alt="_images/CTT_trigger_execution.png" src="_images/CTT_trigger_execution.png" />
-<p class="caption"><span class="caption-text">Figure 18: Executing CTT based on a configuration file.</span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
+<img alt="_images/CTT_progress_log.png" src="_images/CTT_progress_log.png" />
+<p class="caption"><span class="caption-text">Figure 18: Progress log in the output panel of the RADON IDE</span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
 </div>
-<p>CTT will now execute all steps of the CTT workflow, including the deployment of the SUT and the CSAR, as well as executing the tests and fetching the results. After a successful execution, the results are stored in the configured folder (Figure 19).</p>
-<div class="figure align-default" id="id24">
-<img alt="_images/CTT_results.png" src="_images/CTT_results.png" />
-<p class="caption"><span class="caption-text">Figure 19: Results of the test execution.</span><a class="headerlink" href="#id24" title="Permalink to this image">¶</a></p>
-</div>
+<p>Depending on the underlying infrastructure, this process can take some time until the process is finished.
+Once the process is finished, you can find the results in a ZIP-file located in the place you specified in the configuration file in <code class="docutils literal notranslate"><span class="pre">result_destination_path</span></code> (in this example, this would be <code class="docutils literal notranslate"><span class="pre">serverless-test-results.zip</span></code>).</p>
 </div>
 </div>
 <div class="section" id="other-radon-commands">
@@ -221,9 +286,9 @@ During the deployment process, the CSAR will be published to the Template Librar
 <li><p>Visualize the status of the deployment of a CSAR by selecting the <em>Show Deployment Status</em> option. Once this command is selected, a browser window connecting to the output console of the Jenkins that manages the deployment process will be opened;</p></li>
 <li><p>Open the RADON Help Page by selecting the <em>Open Help Page</em> option. Once this command is selected a browser window connecting to the RADON methodology, GitHub page will be opened.</p></li>
 </ul>
-<div class="figure align-default" id="id25">
+<div class="figure align-default" id="id24">
 <img alt="_images/RADON_menu_light.jpg" src="_images/RADON_menu_light.jpg" />
-<p class="caption"><span class="caption-text">Figure 20: RADON menu in the command palette.</span><a class="headerlink" href="#id25" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Figure 20: RADON menu in the command palette.</span><a class="headerlink" href="#id24" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
