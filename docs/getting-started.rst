@@ -1,4 +1,4 @@
-The following documentation explains how to use the beta version of the RADON integrated framework by means of the RADON IDE.
+The following documentation explains how to use the final release of the RADON integrated framework by means of the RADON IDE.
 
 Access to the RADON IDE  
 """""""""""""""""""""""
@@ -17,7 +17,7 @@ After receiving the credentials, login to the RADON IDE (Figure 1) connecting to
 
 Create a RADON workspace
 """"""""""""""""""""""""
-In the Eclipse Che dashboard select *Get Started* tab and then *Custom Workspace*. Copy the URL of the *RADON Devfile* available `here <https://raw.githubusercontent.com/radon-h2020/radon-ide/master/devfiles/radon/v0.0.3/devfile.yaml>`_ and paste it in the field *URL of devfile*
+In the Eclipse Che dashboard select *Get Started* tab and then *Custom Workspace*. Copy the URL of the *RADON Devfile* available `here <https://raw.githubusercontent.com/radon-h2020/radon-ide/master/devfiles/radon/latest/devfile.yaml>`_ and paste it in the field *URL of devfile*
 under *Devfile* section. Then click on *Load devfile* and once the RADON devfile has been loaded click on the *Create & Open* button (Figure 3).
 
 .. figure:: imgs/LoadRADONDevfile.jpg
@@ -67,7 +67,7 @@ Verification Tool
 
 The Verification Tool is used within the RADON IDE to verify that a RADON model conforms to the CDL specifications. The .cdl files defining the CDL specifications for a specific RADON model can be edited, imported and updated within the workspace of IDE (Figure 9). To get started, you can clone the `verification tool sample project <https://github.com/radon-h2020/demo-verification-tool-sample-project.git>`_ in the workspace, which contains a sample TOSCA model and a CDL specification. To clone this project use the Git functionalities provided in the workspace as described below:
 
-1. Press *Ctlt+Shift+P* to open the command palette. Select the *Git:Clone* command and type the Repository URL of the verification tool sample project. 
+1. Press *Ctrl+Shift+P* to open the command palette. Select the *Git:Clone* command and type the Repository URL of the verification tool sample project. 
 2. Press *Enter* to clone the project in the workspace
 
 
@@ -130,31 +130,103 @@ The results (i.e., the metrics extracted from the script and defect-proneness) w
 Continuous Testing Tool 
 ***********************
 
-The Continuous Testing Tool (CTT) is used within the RADON IDE to define and execute tests, which are specified in a CSAR for a system under test (SUT). To get started, you can clone the `CTT sample project <https://github.com/radon-h2020/demo-ctt-imageresize>`_. To clone this project use the Git functionalities provided in the workspace as described below:
+The Continuous Testing Tool (CTT) provides the means to deploy the application that is supposed to be tested, the so-called system under test (SUT), and a testing agent, the so-called test infrastructure (TI), that executes the defined tests against the SUT. 
+After the deployment has succeeded, the defined test is executed and the results are obtained. 
+The complete functionality of the tool is described in the `CTT documentation <https://continuous-testing-tool.readthedocs.io/en/latest/>`_.
 
-1. Press *Ctlt+Shift+P* to open the command palette. Select the *Git:Clone* command and type the above repository URL of the CTT sample project. 
-2. Press *Enter* to clone the project in the workspace
+In this documentation, we go through the test of the "ServerlessToDoListAPI" and an endpoint test that makes sure that the deployment was successful. The SUT is FaaS-based implementation of a ToDo-list using AWS services, especially AWS lambda functions. The TI consists of a Docker container of a test agent for CTT that is deployed on top of an AWS EC2 instance.
 
-In the folder *radon-ctt/*, you will find sample CSAR files for the SUT and the test infrastructure (TI). These files are exports from the service templates that can also be found in the RADON Particles. Hence, for using other SUT and TI CSAR files, users will need to export them via GMT. 
+To make this example work, some information is needed beforehand: AWS Access Key ID, AWS Secret Access Key, AWS EC2 SSH Key Type (e.g., ``OPENSSH``, ``RSA``), AWS EC2 SSH Key, AWS EC2 SSH Key Name, AWS VPC Subnet ID.
 
-To create a CTT configuration for an SUT CSAR file, make a right-click on the file, e.g., *sut-ec2.csar*, and select "Create test configuration" (Figure 18).
+The concrete steps are as follows:
 
-.. figure:: imgs/CTT_create_config.png
+**1. Preparing the Workspace with Credentials**
+In order to use CTT in the context of the RADON IDE, some credentials need to be provided when the workspace is created. 
+In the future, this step will be made more comfortable to conduct. 
+The said credentials are required in order to deploy the SUT and the TI on the respective service providers’ infrastructures (e.g., AWS).
 
-   Figure 18: Creating a configuration file template for a CSAR.
+These credentials need to be filled in into the workspace configuration ``devfile.yaml`` before the workspace is created.
+The following code listing shows an exemplary excerpt of the ``devfile.yaml``’s CTT ``env``-section on how the fields need to be populated with the credentials. ::
 
-You fill find a new configuration file next to the CSAR file, e.g., *sut-ec2_testconfig.yml*. Double-click on the configuration file and it will be shown in the editor. Once the configuration file has been completed, the execution can by triggered by a right-click on the file and selecting "Execute test configuration" (Figure 19). 
+  env:
+   - name: OPERA_SSH_USER
+     value: "ubuntu"
+   - name: OPERA_SSH_IDENTITY_FILE
+     value: "/tmp/aws-ec2"
+   - name: AWS_ACCESS_KEY_ID
+     value: "AKSDF4353SFD3NMGXHERWQ"
+   - name: AWS_SECRET_ACCESS_KEY
+     value: "6QYMAS4sdfhAHDJ1L+pfgqZt/9OcxUN8a1/vg/ly"
+   - name: KEY_TYPE
+     value: "OPENSSH"
+   - name: SSH_PRIV_KEY
+     value: >
+       c3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAA
+       NhAAAAAwEAAQAAAxUA9DcKpAwyCTystithD
+       [..]
+       Akawm0cQ55NZ76el6jzUWBDePeT7mmWUCfm
+       kVpfAebH2+m6/F/KpFE2Q8aFBhWSVD3SmX5
+       YPAAAAAAECCwQ=
 
-.. figure:: imgs/CTT_trigger_execution.png
+Once these variables are set, the workspace can be created.
 
-   Figure 19: Executing CTT based on a configuration file.
+**2. Configuring the Test Scenario**
+Once the workspace is started and completely loaded, we create a new directory that holds all files that are needed to execute CTT. 
+In this example, we name it ``ServerlessToDoList``.
+The CSAR files of the *Serverless ToDo-List API* service template and the *CTT Deployment Test Agent* are put into this directory, as well as an ``inputs.yaml`` file that provides some inputs needed for the deployment of the TI. 
+It is necessary to fill in the fields ``vpc_subnet_id`` with the VPC subnet ID on AWS the instance is supposed to be deployed to, and ``ssh_key_name`` represents the SSH key name that is stored in AWS for deploying EC2 instances.
+The field ``ssh_key_file`` should stay as is.
+The following code listing shows an exemplary ``inputs.yaml`` file. ::
 
-CTT will now execute all steps of the CTT workflow, including the deployment of the SUT and the CSAR, as well as executing the tests and fetching the results. After a successful execution, the results are stored in the configured folder (Figure 20).
+  ---
+  vpc_subnet_id: "subnet-04706a8b41abdefa5"
+  ssh_key_name: "awsec2"
+  ssh_key_file: "/tmp/aws-ec2"
+  ...
 
-.. figure:: imgs/CTT_results.png
+The configuration of the CTT execution itself is specified by a YAML configuration file. In this file, the following properties need to be defined:
 
-   Figure 20: Results of the test execution.
+- Name for the test configuration [``name``]
+- Folder, the artifacts are placed in [``repository_url``]
+- SUT CSAR path (relative to the folder) [``sut_tosca_path``]
+- SUT inputs file (optional, relative to the folder) [``sut_inputs_path``]
+- TI CSAR path (relative to the folder) [``ti_tosca_path``]
+- TI inputs file (optional, relative to the folder) [``ti_inputs_path``]
+- Test Id of the test to be executed (not yet taken into account) [``test_id``]
+- Results output file path (relative to configuration file) [``result_destination_path``]
 
+The following code listing shows an exemplary CTT configuration file named ``ctt_config.yaml``. ::
+
+  {
+    "name": "ServerlessToDoList-DeploymentTest",
+    "repository_url": "ServerlessToDoList",
+    "sut_tosca_path": "todolist.csar",
+    "ti_tosca_path": "deploymentTestAgent.csar",
+    "ti_inputs_path": "inputs.yaml",
+    "test_id": "test_1",
+    "result_destination_path": "serverless-test-results.zip"
+  }
+
+Please note that the folder property is currently named ``repository_url`` for technical reasons. In the future, this property will be renamed.
+
+The resulting scenario can be seen in Figure 18.
+
+.. figure:: imgs/CTT_scenario.png
+
+   Figure 18: Severless ToDo-List API scenario in the RADON IDE
+
+**3. Executing CTT**
+
+After all preparations are finished, you can right-click on the ``ctt_config.yaml`` file and choose the option ``RadonCTT: Execute test configuration``.
+
+The progress can be seen in the output panel (see Figure 19) and a progress bar appears on the lower right.
+
+.. figure:: imgs/CTT_progress_log.png
+
+   Figure 19: Progress log in the output panel of the RADON IDE
+
+Depending on the underlying infrastructure, this process can take some time until the process is finished.
+Once the process is finished, you can find the results in a ZIP-file located in the place you specified in the configuration file in ``result_destination_path`` (in this example, this would be ``serverless-test-results.zip``).
 
 Template library
 ****************
@@ -165,8 +237,8 @@ To prevent any possible confusions remember that Template library (service) or i
 TLPS (Template Library Publishing Service). If you are totally unfamiliar with TPS you can take a look at the
 [Template library's documentation](https://template-library-radon.xlab.si/docs/).
 
-Main features
-=============
+**Main features**
+
 The extension uses the [Template library REST API](https://template-library-radon.xlab.si/swagger/) and can therefore invoke various Template library actions.
 
 Currently, supported actions are:
@@ -176,8 +248,8 @@ Currently, supported actions are:
 - downloading a specific template version files
 - deleting saved login info (KeyCloak cookies)
 
-Usage
-======
+**Usage**
+
 The plugin is invoked by right clicking on the file from file explorer or in the editor. There are four
 commands that can be selected from the dropdown options and these are further explained within the next sections.
 
@@ -185,8 +257,8 @@ commands that can be selected from the dropdown options and these are further ex
 
    Figure 21: Template library plugin commands
 
-Template library authentication
--------------------------------
+**Template library authentication**
+
 When right clicking on any Template library plugin command (except from set API endpoint and clean login info commands),
 the extension will verify user's credentials if the data has been saved. So, the first time when user wants to use
 the plugin, he will be offered a set of options to select the prefferd authentication method for the Template library.
@@ -214,8 +286,8 @@ you will have to login again every time you use the plugin.
 
    Figure 24: Login success
 
-Template library set REST API endpoint
---------------------------------------
+**Template library set REST API endpoint**
+
 This command is used to set TPS REST API endpoint that will be used for executing the TPS HTTP requests. The
 default value here is `https://template-library-radon.xlab.si/api` which is pointing to the public TPS REST API URL.
 This command was meant mostly for testing different versions of TPS API so currently there is no need to change it.
@@ -224,8 +296,8 @@ This command was meant mostly for testing different versions of TPS API so curre
 
    Figure 25: Set TPS REST API endpoint
 
-Template library config actions
--------------------------------
+**Template library config actions**
+
 If you choose this option the TPS actions can be invoked via JSON config file. If you right clicked on the JSON
 file (from the editor or from the file explorer) you will be offered to chose it as a config file. If not, you will
 be asked to select this configuration file from other folders.
@@ -233,8 +305,8 @@ be asked to select this configuration file from other folders.
 JSON object that is present in the config file should follow an exact structure with which depends on the type of the action.
 The JSON keys specified are not mutually exclusive so you can execute multiple TPS actions with one JSON config file.
 
-Create template JSON config
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*Create template JSON config*
+
 JSON object for creating a template must have all these keys:
 
 +---------------------------------+-----------------------------------------------------------------+
@@ -263,8 +335,8 @@ Example:
 
    Figure 26: Upload config action
 
-Upload template version JSON config
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*Upload template version JSON config*
+
 When uploading a template version you can use the following keys (`upload_readme_file` and `upload_implementation_files` are optional).
 
 +---------------------------------+--------------------------------------------------------------------------------------+
@@ -296,8 +368,8 @@ Example:
 
    Figure 27: Successful template version upload
 
-Download template version JSON config
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*Download template version JSON config*
+
 When downloading template version files you will get all version files (TOSCA template and playbooks) compressed in a zip
 file (if you provided just a CSAR without implementation files, you will get back this CSAR).
 
@@ -328,14 +400,14 @@ Example:
 
    Figure 29: Successful template version download
 
-Template library interactive actions
-------------------------------------
+**Template library interactive actions**
+
 This TPS RADON IDE extension command will guide you through an interactive Eclipse Theia tasks, where you will be able
 to create templates, upload template versions or download version files from Template library service. More images
 from the plugin are can be found here: `https://github.com/radon-h2020/radon-template-library-publishing-service-plugin <https://github.com/radon-h2020/radon-template-library-publishing-service-plugin>`_.
 
-Template library delete login info
-----------------------------------
+**Template library delete login info**
+
 This Template library plugin command will make sure that the saved login data gets deleted (e.g. KeyCloak cookies). After
 that you will have to login again if you activate any TPS commands.
 
@@ -404,7 +476,7 @@ the SaaS UI where you will be able to see your created workspace and project.
 
 
 Trigger CI
-""""""""""""""""""""""
+**********
 
 **CI/CD preconditions**
 
@@ -482,7 +554,7 @@ If the selected CSAR was not uploaded yet on the Template Library, the system gu
 
 
 Other RADON Commands
-""""""""""""""""""""
+********************
 From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (Figure 43) is available to perform the following actions:
 
 - Visualize the status of the CI process by selecting the *Show CI Status* option. Once this command is selected, a browser window connecting to a page showing the status of the Jenkins CI job will be opened;

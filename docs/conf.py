@@ -22,7 +22,7 @@ copyright = "2020, Stefania D'Agostini"
 author = "Stefania D'Agostini"
 
 # The full version, including alpha/beta/rc tags
-release = 'alpha'
+release = 'final'
 
 
 # -- General configuration ---------------------------------------------------
