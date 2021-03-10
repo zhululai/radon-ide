@@ -98,8 +98,13 @@ To invoke the optimize functionality of the DT, make a right-click on the servic
 
 Defect Prediction Tool
 **********************
-The Defect Prediction Tool is used within the RADON IDE to check defects in a (Ansible) IaC script. To invoke the detection functionality of the DPT, make a right-click on a YAML-based Ansible file (i.e. .yaml file) or on the active editor with the open YAML file and select the Run Detection option (Figure 14).
-The results (i.e., the metrics extracted from the script and defect-proneness) will be displayed in a new active tab(Figure 15).
+
+The Defect Prediction Tool is used within the RADON IDE to enable operators to identify potentially defective IaC blueprints in Ansible or Tosca, and their defect type. 
+It consists of a Visual Studio Code extension integrated into an Eclipse Che environment, and provides a graphical user interface to run the detection on a given Ansible or Tosca blueprint and display the results. 
+The extension is packaged as an Eclipse Che Theia plugin into a sidebar container. 
+An operator can interact with it and invoke the detection by right-clicking on a YAML-based Ansible file (or TOSCA-based .csar file) and select the Run Detection option (Figure 14).
+Please note, in case of YAML files, it is also possible to run the detection by right-click on the active editor with the open YAML file and select "Run Detection".
+The results, shown in Figure 15, consist of a table showing the values for each of the extracted metrics (highlighting those that might be critical because diverging from the community standard), and the blueprint’s defect type, if any, with a set of rules to interpret the decision.
 
 .. figure:: imgs/DPT_detection_light.jpg
 
