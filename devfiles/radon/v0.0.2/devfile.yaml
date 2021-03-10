@@ -7,9 +7,6 @@ projects:
       location: 'https://github.com/radon-h2020/radon-particles'
       type: git
 components:
-  - id: eclipse/che-theia/next
-    type: cheEditor
-    alias: theia-editor
   - endpoints:
       - name: radon-gmt
         port: 8080

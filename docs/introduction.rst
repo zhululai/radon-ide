@@ -2,7 +2,7 @@ The *RADON IDE* provides a web-based development environment for multi-user usag
 
 The RADON development environment is based on the `Eclipse Che <https://www.eclipse.org/che/>`_ technology: an open source developer workspace server which comes with a cloud integrated development environment (IDE) used by developers to create applications without the need to install any software on their local system.
 
-The RADON IDE provides standard functionalities to support development activities (e.g. debugging functionalities and error checking capabilities) along with, according to the RADON methodology, specific capabilities as listed below:
+The RADON IDE provides standard functionalities to support development activities (e.g. debugging functionalities and error checking capabilities) along with, according to the `RADON methodology <https://github.com/radon-h2020/radon-methodology/>`_, specific capabilities as listed below:
 
 - *Authorization management*: enables the RADON users to receive access to the development environment in order to interact with the RADON framework. 	
 - *Manage RADON workspaces*: permits the creation of new RADON workspaces (or open existing ones) having a stack with all the needed tools, plugins and extensions enabled.

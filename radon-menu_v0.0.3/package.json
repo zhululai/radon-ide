@@ -1,0 +1,110 @@
+{
+	"name": "radon-menu-plugin",
+	"displayName": "radon-menu-plugin",
+	"description": "A custom RADON menu to interact with RADON tools",
+	"version": "0.0.3",
+	"publisher": "radon",
+	"engines": {
+		"vscode": "^1.44.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:radon-menu.triggerCI",
+		"onCommand:radon-menu.CIStatus",
+		"onCommand:radon-menu.startHelp",
+		"onCommand:radon-menu.openMonitoring",
+		"onCommand:radon-menu.showDeploymentStatus"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"menus": {
+			"commandPalette": [
+				{
+					"when": "resourceExtname == .csar && resourceSet",
+					"command": "radon-menu.triggerCI"
+				},
+				{
+					"command": "radon-menu.CIStatus"
+				},
+				{
+					"command": "radon-menu.startHelp"
+				},
+				{
+					"command": "radon-menu.openMonitoring"
+				},
+				{
+					"command": "radon-menu.showDeploymentStatus"
+				}
+			],
+			"explorer/context": [
+				{
+					"when": "resourceExtname == .csar",
+					"command": "radon-menu.triggerCI",
+					"group": "myGroup@1"
+				}
+			],
+			"editor/context": [
+				{
+					"command": "radon-menu.triggerCI",
+					"group": "myGroup@2"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "radon-menu.triggerCI",
+				"category": "RADON",
+				"title": "Trigger CI"
+			},
+			{
+				"command": "radon-menu.CIStatus",
+				"category": "RADON",
+				"title": "Show CI Status"
+			},
+			{
+				"command": "radon-menu.startHelp",
+				"category": "RADON",
+				"title": "Open Help Page"
+			},
+			{
+				"command": "radon-menu.openMonitoring",
+				"category": "RADON",
+				"title": "Open Monitoring page"
+			},
+			{
+				"command": "radon-menu.showDeploymentStatus",
+				"category": "RADON",
+				"title": "Show Deployment status"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^13.11.0",
+		"@types/vscode": "^1.44.0",
+		"@typescript-eslint/eslint-plugin": "^2.26.0",
+		"@typescript-eslint/parser": "^2.26.0",
+		"eslint": "^6.8.0",
+		"glob": "^7.1.6",
+		"mocha": "^7.1.1",
+		"simple-git": "^2.5.0",
+		"typescript": "^3.8.3",
+		"vscode-test": "^1.3.0"
+	},
+	"dependencies": {
+		"axios": "^0.21.0",
+		"form-data": "^3.0.0",
+		"node-html-parser": "^1.4.5"
+	}
+}
