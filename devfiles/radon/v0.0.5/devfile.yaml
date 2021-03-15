@@ -1,3 +1,4 @@
+
 metadata:
   generateName: radon-workspace-
 projects:
@@ -192,6 +193,7 @@ components:
         name: datapp-deploy
         labels:
           app: datapp
+          tier: frontend
       spec:
         replicas: 1
         selector:
@@ -218,7 +220,7 @@ components:
                   - mountPath: "/projects"
                     name: projects-storage-datapipeplugin
     type: kubernetes
-    alias: radon-datapipeplugin
+    alias: radon-datapp
   - type: chePlugin
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-vt/latest/meta.yaml
