@@ -206,19 +206,12 @@ components:
               app: datapp
               tier: frontend
           spec:
-            volumes:
-              - name: projects-storage-datapipeplugin
-                persistentVolumeClaim:
-                  claimName: projects
             containers:
               - name: datapp
                 image: pjakovits/datapipeline-plugin:che
                 imagePullPolicy: Always
                 ports:
                   - containerPort: 8083
-                volumeMounts:
-                  - mountPath: "/projects"
-                    name: projects-storage-datapipeplugin
     type: kubernetes
     alias: radon-datapp
   - type: chePlugin
