@@ -275,13 +275,22 @@ export async function authenticate(context: ExtensionContext) {
     window.showInformationMessage('Template library login action has finished.');
 }
 
-export interface JenkinsParams{
+export class JenkinsParams{
     jenkinsURL: string;
     jenkinsUsername: string;
     jenkinsPassword: string;
     jenkinsJobName:string;
     jenkinsToken:string;
     cookie_jar: string;
+
+    constructor(){
+        this.jenkinsURL="";
+        this.jenkinsUsername="";
+        this.jenkinsPassword="";
+        this.jenkinsJobName="";
+        this.jenkinsToken="";
+		this.cookie_jar="";
+    }
 }
 
 const DEFAULT_JenkinsURL="http://217.172.12.165:8080/";
@@ -475,9 +484,15 @@ async function validateEmpty(value: string) {
 
 const getCSARNameFromTL = 'Retrieve CSAR from Template Library'; 
 
-export interface CSAR_References {
-    templateName: string,
+export class CSAR_References {
+    templateName: string;
     versionName: string;
+
+    constructor(){
+        this.templateName="";
+        this.versionName="";
+    }
+
 }
 
 export async function getCSARFromTL(): Promise<any>{
@@ -599,8 +614,9 @@ export function runCmd(cmd:any)
 }
 
 export async function getCrumb(jenkinsParams:JenkinsParams):Promise<any> {
-    var cmd = `curl --silent --cookie-jar `+ jenkinsParams.cookie_jar +` '`+jenkinsParams.jenkinsURL+`crumbIssuer/api/xml?xpath=concat\(//crumbRequestField,%22:%22,//crumb\)' -u `+jenkinsParams.jenkinsUsername+`:`+jenkinsParams.jenkinsPassword;  
-    
+    //var cmd = `curl --silent --cookie-jar `+ jenkinsParams.cookie_jar +` '`+jenkinsParams.jenkinsURL+`crumbIssuer/api/xml?xpath=concat\(//crumbRequestField,%22:%22,//crumb\)' -u `+jenkinsParams.jenkinsUsername+`:`+jenkinsParams.jenkinsPassword;  
+    var cmd = "curl --silent --cookie-jar "+ jenkinsParams.cookie_jar +" \""+jenkinsParams.jenkinsURL+"crumbIssuer/api/xml?xpath=concat\(//crumbRequestField,%22:%22,//crumb\)\" -u "+jenkinsParams.jenkinsUsername+":"+jenkinsParams.jenkinsPassword;  
+
     var result = runCmd(cmd);
     console.log("Get Jenkins crumb..."+result);
 

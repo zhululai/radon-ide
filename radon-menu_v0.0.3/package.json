@@ -11,8 +11,8 @@
 		"Other"
 	],
 	"activationEvents": [
+		"onCommand:radon-menu.configCI",
 		"onCommand:radon-menu.triggerCI",
-		"onCommand:radon-menu.CIStatus",
 		"onCommand:radon-menu.startHelp",
 		"onCommand:radon-menu.openMonitoring",
 		"onCommand:radon-menu.showDeploymentStatus"
@@ -23,10 +23,11 @@
 			"commandPalette": [
 				{
 					"when": "resourceExtname == .csar && resourceSet",
-					"command": "radon-menu.triggerCI"
+					"command": "radon-menu.configCI"
 				},
 				{
-					"command": "radon-menu.CIStatus"
+					"when": "resourceExtname == .yaml && resourceSet",
+					"command": "radon-menu.triggerCI"
 				},
 				{
 					"command": "radon-menu.startHelp"
@@ -41,11 +42,20 @@
 			"explorer/context": [
 				{
 					"when": "resourceExtname == .csar",
+					"command": "radon-menu.configCI",
+					"group": "myGroup@1"
+				},
+				{
+					"when": "resourceExtname == .yaml",
 					"command": "radon-menu.triggerCI",
 					"group": "myGroup@1"
 				}
 			],
 			"editor/context": [
+				{
+					"command": "radon-menu.configCI",
+					"group": "myGroup@2"
+				},
 				{
 					"command": "radon-menu.triggerCI",
 					"group": "myGroup@2"
@@ -54,14 +64,14 @@
 		},
 		"commands": [
 			{
+				"command": "radon-menu.configCI",
+				"category": "RADON",
+				"title": "Configure CI"
+			},
+			{
 				"command": "radon-menu.triggerCI",
 				"category": "RADON",
 				"title": "Trigger CI"
-			},
-			{
-				"command": "radon-menu.CIStatus",
-				"category": "RADON",
-				"title": "Show CI Status"
 			},
 			{
 				"command": "radon-menu.startHelp",
