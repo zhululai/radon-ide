@@ -248,5 +248,5 @@ components:
   - type: chePlugin
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-tosca-yaml/latest/meta.yaml
-      alias: radon-tosca-yaml
+    alias: radon-tosca-yaml
 apiVersion: 1.0.0
