@@ -241,8 +241,8 @@ components:
   - type: chePlugin
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-ctt/latest/meta.yaml
-    alias: radon-datapipeline-plugin
   - type: chePlugin
     reference: >-
-      https://raw.githubusercontent.com/pjakovits/radon-plugin-registry/master/radon/radon-datapipeline-plugin/latest/meta.yaml
+      https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-datapipeline-plugin/latest/meta.yaml
+    alias: radon-datapipeline-plugin
 apiVersion: 1.0.0
