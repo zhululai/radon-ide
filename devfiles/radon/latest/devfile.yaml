@@ -177,6 +177,43 @@ components:
                     name: projects-storage-ctt
     type: kubernetes
     alias: radon-ctt   
+  - endpoints:
+      - name: radon-datapp
+        port: 8083
+        attributes:
+          protocol: http
+          public: 'true'
+          discoverable: 'false'
+          secure: 'false'
+    referenceContent: |
+      ---
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: datapp-deploy
+        labels:
+          app: datapp
+          tier: frontend
+      spec:
+        replicas: 1
+        selector:
+          matchLabels:
+            app: datapp
+            tier: frontend
+        template:
+          metadata:
+            labels:
+              app: datapp
+              tier: frontend
+          spec:
+            containers:
+              - name: datapp
+                image: pjakovits/datapipeline-plugin:che
+                imagePullPolicy: Always
+                ports:
+                  - containerPort: 8083
+    type: kubernetes
+    alias: radon-datapp
   - type: chePlugin
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-vt/latest/meta.yaml
@@ -204,4 +241,12 @@ components:
   - type: chePlugin
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-ctt/latest/meta.yaml
+  - type: chePlugin
+    reference: >-
+      https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-datapipeline-plugin/latest/meta.yaml
+    alias: radon-datapipeline-plugin
+  - type: chePlugin
+    reference: >-
+      https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-tosca-yaml/latest/meta.yaml
+    alias: radon-tosca-yaml
 apiVersion: 1.0.0
