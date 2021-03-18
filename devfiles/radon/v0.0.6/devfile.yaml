@@ -245,7 +245,7 @@ components:
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-datapipeline-plugin/latest/meta.yaml
     alias: radon-datapipeline-plugin
-- type: chePlugin
+  - type: chePlugin
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-tosca-yaml/latest/meta.yaml
     alias: radon-tosca-yaml
