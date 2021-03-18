@@ -158,17 +158,21 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 			CURRENT_DIR_PATH = path.resolve(path.dirname(uri.fsPath));
-
+			
 			const yaml = require('js-yaml');
+			
         	try {
+				
            		let fileContent = await fs.readFileSync(uri.fsPath, 'utf8');
-            	let yamlData = yaml.safeLoad(fileContent);
+				
+            	let yamlData = yaml.load(fileContent);
+				
 				if(!Object.keys(yamlData).includes("CSAR_name" || "CSAR_version" ||"Jenkins_URL" || "Jenkins_username" || "Jenkins_password" || "Jenkins_job" || "Jenkins_job_token" || "cookie_jar")){
 					throw new Error(`One of the mandatory field is not present in the given config file`);
 				}
 				else{
 					var params:ConfigParameters = JSON.parse(JSON.stringify(yamlData));
-
+					
 					csarRefs.templateName=params.CSAR_name;
 					csarRefs.versionName=params.CSAR_version;
 
@@ -179,7 +183,7 @@ export function activate(context: vscode.ExtensionContext) {
 					jenkinsParams.jenkinsPassword=params.Jenkins_password;
 					jenkinsParams.jenkinsJobName=params.Jenkins_job;
 					jenkinsParams.jenkinsToken=params.Jenkins_job_token;
-					jenkinsParams.cookie_jar=params.cookie_jar
+					jenkinsParams.cookie_jar=params.cookie_jar;
 
 					console.log("jenkinsParams: "+JSON.stringify(jenkinsParams));
 
