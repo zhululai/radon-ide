@@ -3,7 +3,7 @@ The following documentation explains how to use the final release of the RADON i
 Access to the RADON IDE  
 """""""""""""""""""""""
 
-Use the following `form <https://mailchi.mp/fe5357445dba/radon-ide-access-request/>`_ to request access to the RADON IDE. An account will be created and the credentials will be sent via the email specified in the form.
+Use the following `form <https://mailchi.mp/fe5357445dba/radon-ide-access-request/>`_ to request access to the RADON IDE. An account will be created and the credentials will be sent via the email specified in the form, along with the URL to the RADON Stack devfile.
 
 After receiving the credentials, login to the RADON IDE (Figure 1) connecting to the `Che Login page <http://che-che.217.172.12.178.nip.io>`_ to access the main Che dashboard (Figure 2). In the *Workspaces tab* the list of already created workspaces is visible and it is possible to create new ones. 
 
@@ -17,14 +17,14 @@ After receiving the credentials, login to the RADON IDE (Figure 1) connecting to
 
 Create a RADON workspace
 """"""""""""""""""""""""
-In the Eclipse Che dashboard select *Get Started* tab and then *Custom Workspace*. Copy the URL of the *RADON Devfile* available `here <https://raw.githubusercontent.com/radon-h2020/radon-ide/master/devfiles/radon/latest/devfile.yaml>`_ and paste it in the field *URL of devfile*
+In the Eclipse Che dashboard select *Get Started* tab and then *Custom Workspace*. Copy the URL of the *RADON Devfile* received by email and paste it in the field *URL of devfile*
 under *Devfile* section. Then click on *Load devfile* and once the RADON devfile has been loaded click on the *Create & Open* button (Figure 3).
 
-.. figure:: imgs/LoadRADONDevfile.jpg
+.. figure:: imgs/CreateNewRADONWorkspace.jpg
 
    Figure 3: Create a RADON Workspace.
 
-As depicted in Figure 4, a RADON workspace is started. It provides the “radon-particles” modeling project with a directory structure compliant with the GMT and the set of integrated RADON tools enabled (i.e., GMT, VT, DT, DPT, CTT, Delivery Toolchain).
+As depicted in Figure 4, a RADON workspace is started. It provides the “radon-particles” modeling project with a directory structure compliant with the GMT and the set of integrated RADON tools enabled (i.e., GMT, VT, DT, DPT, CTT, TL, Delivery Toolchain).
 
 .. figure:: imgs/IDE_RADONWorkspace_Light.jpg
 
@@ -258,7 +258,7 @@ commands that can be selected from the dropdown options and these are further ex
 
 .. figure:: imgs/tl/commands.png
 
-   Figure 21: Template library plugin commands
+   Figure 20: Template library plugin commands
 
 **Template library authentication**
 
@@ -273,7 +273,7 @@ Since Template library auth works through KeyCloak, there can be multiple login 
 
 .. figure:: imgs/tl/auth_methods.png
 
-   Figure 22: Template library plugin auth
+   Figure 21: Template library plugin auth
 
 If the login does not succeed, you will be warned and will have to login again. If the login succeeds, the KeyCloak auth cookies
 will be stored into the local storage and next time you invoke the any plugin command, you won't have to login again. But if you
@@ -283,11 +283,11 @@ you will have to login again every time you use the plugin.
 
 .. figure:: imgs/tl/login_password.png
 
-   Figure 23: Password prompt
+   Figure 22: Password prompt
 
 .. figure:: imgs/tl/login_success.png
 
-   Figure 24: Login success
+   Figure 23: Login success
 
 **Template library set REST API endpoint**
 
@@ -297,7 +297,7 @@ This command was meant mostly for testing different versions of TPS API so curre
 
 .. figure:: imgs/tl/set_api_endpoint.png
 
-   Figure 25: Set TPS REST API endpoint
+   Figure 24: Set TPS REST API endpoint
 
 **Template library config actions**
 
@@ -327,6 +327,7 @@ JSON object for creating a template must have all these keys:
 Example:
 
 .. code-block:: json
+
     {
         "upload_template_name": "aws_bucket",
         "upload_template_description": "AWS bucket node",
@@ -336,7 +337,7 @@ Example:
 
 .. figure:: imgs/tl/upload_config.png
 
-   Figure 26: Upload config action
+   Figure 25: Upload config action
 
 *Upload template version JSON config*
 
@@ -357,6 +358,7 @@ When uploading a template version you can use the following keys (`upload_readme
 Example:
 
 .. code-block:: json
+
     {
         "upload_version_name": "2.1.5",
         "upload_readme_file": "./aws_bucket/README.md",
@@ -369,7 +371,7 @@ Example:
 
 .. figure:: imgs/tl/upload_success.png
 
-   Figure 27: Successful template version upload
+   Figure 26: Successful template version upload
 
 *Download template version JSON config*
 
@@ -389,6 +391,7 @@ file (if you provided just a CSAR without implementation files, you will get bac
 Example:
 
 .. code-block:: json
+
     {
         "download_template_name": "aws_bucket",
         "download_version_name": "2.1.5",
@@ -397,11 +400,11 @@ Example:
 
 .. figure:: imgs/tl/download_config.png
 
-   Figure 28: Download config action
+   Figure 27: Download config action
 
 .. figure:: imgs/tl/download_success.png
 
-   Figure 29: Successful template version download
+   Figure 28: Successful template version download
 
 **Template library interactive actions**
 
@@ -458,7 +461,7 @@ than other actions are performed through the Opera SaaS web interface.
 
 .. figure:: imgs/xopera-saas/deploy_csar.png
 
-   Figure 30: Deployment of the CSAR.
+   Figure 29: Deployment of the CSAR.
 
 User can invoke the main plugin actions by right clicking on the compressed
 TOSCA CSAR (file should include .zip or .csar extension). Then the plugin will
@@ -466,7 +469,7 @@ interactively guide him through the creation of workspace and the project.
 
 .. figure:: imgs/xopera-saas/create_project.png
 
-   Figure 31: Creating a new project.
+   Figure 30: Creating a new project.
 
 After that you will be asked if you want to deploy the CSAR from the project.
 The deployment process starts right away and gives you the deployment outputs
@@ -475,96 +478,88 @@ the SaaS UI where you will be able to see your created workspace and project.
 
 .. figure:: imgs/xopera-saas/redirect.png
 
-   Figure 32: The xOpera SaaS plugin redirection.
+   Figure 31: The xOpera SaaS plugin redirection.
 
 
-Trigger CI
+CI/CD
 **********
+The user can configure and trigger CI/CD pipelines through the IDE. The use of CI/CD pipelines provides more flexability, for instance it is possible to include different tollgates in the  deployment process (i.e. the job pipelines can be complex as you want).
 
 **CI/CD preconditions**
 
 * A configured Jenkins server
 * A user with execution access to jobs
-* A configured Jenkins job
+* A configured CI/CD pipeline
 
-Setup guides can be found in `CI/CD templates <https://github.com/radon-h2020/radon-cicd-templates>`_. Here you can configure your own pipeline in the Jenkinsfile format. All tools have its corresponding folder where examples are listed. You as a user are free to cherrypick the code snippets in order to generate the ideal Jenkinsfile. Figure beneath depicts a configuration where a CSAR is fetched from Template Library and deployed to AWS cloud.
+Setup guides can be found in `CI/CD templates <https://github.com/radon-h2020/radon-cicd-templates>`_ and are available for two different CI/CD technologies: Jenkins and CircleCI. 
+
+The tools covered by the templates repository are: 
+
+- CTT - Continuous Testing Tool
+- VT - Verification Tool
+- DPT - Defect Prediction Tool
+- TL - Template Library
+- xOpera - Orchestrator
+
+The above tools have its corresponding folder where examples are listed. You as a user are free to cherrypick the code snippets in order to generate the ideal CI/CD pipeline. Figure 32 beneath depicts a configuration where a CSAR is fetched from Template Library and deployed to AWS cloud.
 
 .. figure:: imgs/PRQ_CI_CONFIG.png
 
+   Figure 32: Example of CI/CD pipeline
+
 **CI/CD execution**
 
-The user can trigger CI functionality through the IDE. The use of CI jobs provides more flexability, for instance it is possible to include different tollgates in the  deployment process (i.e. the job pipelines can be complex as you want).
-To trigger the CI process, select the CSAR, stored in the radon-csar project, make a right-click on it and select the *Trigger CI* option as depicted in Figure 33.
+As depicted in Figure 33 the user can select a CSAR from the file explorer and, with a right-click, select the *Configure CI* command. 
 
-.. figure:: imgs/TriggerCI.jpg
+.. figure:: imgs/CI_CD_ConfigureCI.jpg
 
-   Figure 33: Trigger CI.
+   Figure 33: Configure CI.
 
+The system will generate a new configuration file (i.e. a yaml file) containing the following parameters to set:
 
-During the CI process, the system asks the user if the selected CSAR has been already uploaded on the Template Library (Figure 34).
+   - *CSAR_name*: The name of the CSAR as uploded in the Template Library;
+   - *CSAR_version*: The version of the CSAR as as uploded in the Template Library;
+   - *Jenkins_URL*: The URL of the Jenkins server;
+   - *Jenkins_username*: The username of Jenkins credentials;
+   - *Jenkins_password*: The password of Jenkins credentials;
+   - *Jenkins_job*: The job (i.e. CI/CD pipeline) that must be triggered;
+   - *Jenkins_job_token*: The Authentication Token associated to the job; 
+   - *cookie_jar*: Parameter used to get a Jenkins crumb. Use the value */tmp/cookies*
 
-.. figure:: imgs/CheckIfCSARUploaded.jpg
+Please note that the selected CSAR must be already uploaded on the Template Library using the *CSAR_name* and *CSAR_version* specified in the yaml configuration file. 
 
-   Figure 34: Check if the CSAR has been upload on the Template Library.
+Example:
 
-If the CSAR is already uploaded, the system asks the user to insert the name of the CSAR to deploy via a Jenkins job after having performed the login with the Template Library (Figure 35). It is possible to specify part of the CSAR name to get the list of available CSARs uploaded on the Template Library.
+   .. code-block:: json
 
-.. figure:: imgs/SelectCSARFromTL.jpg
+      {
+         "CSAR_name": "DemoBlueprintAws",
+         "CSAR_version": "0.1.0",
+         "Jenkins_URL": "http://217.172.12.165:8080/",
+         "Jenkins_username": "radonTest",
+         "Jenkins_password": "radonTest",
+         "Jenkins_job": "job/ENG/job/IDE-plugin/job/Template-Library-Deploy",
+         "Jenkins_job_token": "toy-app",
+         "cookie_jar": "/tmp/cookies"
+      }
+  
+Once the configuration yaml file has been edited the user can select it and, with a right-click, select the *Trigger CI* command (Figure 34).
 
-   Figure 35: Select CSAR from Template Library
+.. figure:: imgs/CI_CD_TriggerCI.jpg
 
-Once selected the CSAR, the system asks the user to select one of the available versions of the CSAR (Figure 36). 
+   Figure 34: Trigger CI
 
-.. figure:: imgs/SelectCSARVersion.jpg
-
-   Figure 36: Select CSAR version from Template Library
-
-Once selected the CSAR version, the system asks the user to specify a set of Jenkins configurations to trigger the CI job. In particular, the user has to specify:
-
-- the URL of the Jenkins instance to use (Figure 37);
-- the Jenkins user credentials, i.e. username and password, (Figure 38 and Figure 39);
-- the Jenkins job to trigger (Figure 40);
-- the token to run the job (Figure 41).
-
-.. figure:: imgs/SetJenkinsJob.jpg
-
-   Figure 37: Insert Jenkins URL
-
-.. figure:: imgs/SetJenkinsUsername.jpg
-
-   Figure 38: Insert Jenkins credential: username
-
-.. figure:: imgs/SetJenkinsPassword.jpg
-
-   Figure 39: Insert Jenkins credential: password
-
-.. figure:: imgs/SetJenkinsJob.jpg
-
-   Figure 40: Insert Jenkins job to trigger 
-
-.. figure:: imgs/SetJenkinsToken.jpg
-
-   Figure 41: Insert Jenkins job's token
-
-Finally, the specified Jenkins job is triggered to manage the deployment of the CSAR with the Orchestrator.
-
-If the selected CSAR was not uploaded yet on the Template Library, the system guides the user to create a new whole CSAR template or a new version for the CSAR (Figure 42). The created new template (or new version) is then uploaded on the Template Library and, as mention above, the system asks the user to insert the Jenkins configurations to trigger the CI job. 
-
-.. figure:: imgs/CSARNotUploaded.jpg
-
-   Figure 42: Create a new CSAR Template or new CSAR version
-
-
+Finally, the CI/CD pipeline specified in the yaml configuration file will be triggered and execute in the Jenkins server.
 
 Other RADON Commands
 ********************
-From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (Figure 43) is available to perform the following actions:
+From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (Figure 35) is available to perform the following actions:
 
-- Visualize the status of the CI process by selecting the *Show CI Status* option. Once this command is selected, a browser window connecting to a page showing the status of the Jenkins CI job will be opened;
 - Open the RADON Help Page by selecting the *Open Help Page* option. Once this command is selected a browser window connecting to the RADON methodology GitHub page will be opened;
-- Open the RADON Monitoring Page by selecting the *Open Monitoring Page* option. Once this command is selected a browser window connecting to the RADON Monitoring Dashboard will be opened.
+- Open the RADON Monitoring Page by selecting the *Open Monitoring Page* option. Once this command is selected a browser window connecting to the RADON Monitoring Dashboard will be opened;
+- Open the RADON Show Deployment Page by selecting the *Show Deployment status* option. Once this command is selected a browser window connecting to the xOpera SaaS Dashboard will be opened.
 
 
-.. figure:: imgs/RADON_menu.jpg
+.. figure:: imgs/RADON_menu_light.jpg
 
-   Figure 43: RADON menu in the command palette.
+   Figure 35: RADON menu in the command palette.

@@ -5,10 +5,10 @@ These are the set of actions that can be performed by an authenticated RADON use
 - Availability of the Graphical Modeling Tool (GMT) to be invoked on the RADON-IDE to model application topologies;
 - Availability of the Verification Tool, Decomposition Tool, Defect Prediction Tool, and the Continuous Testing Tool, that can be invoked by the RADON user to verify CDL specifications on the RADON models, to optimize the deployment of the applications and to find the defects on the Infrastracture as Code (IaC) blueprints, and to test applications, respectively;
 - Export of the modelled application in TOSCA’s Cloud Service Archive (CSAR) format for the deployment;
-- Start the deployment process of the CSAR by publishing it on the Template Library and by means of the Delivery Toolchain. The deployment process triggers the CI/CD pipeline (i.e. the Jenkins jobs) to deploy the CSAR with the `Orchestrator <https://xlab-si.github.io/xopera-docs/>`_;
+- Start the deployment process of the CSAR by publishing it on the Template Library and by means of the Delivery Toolchain;
 - Visualization of the deployment status on a browser window.
 
-The above capabilities have been implemented by the customization of the Eclipse Che environment with the realization of a new RADON Stack (i.e a ready-to-go workspace), defining a custom `che devfile <https://raw.githubusercontent.com/radon-h2020/radon-ide/master/devfiles/radon/latest/devfile.yaml>`_ including the following elements:
+The above capabilities have been implemented by the customization of the Eclipse Che environment with the realization of a new RADON Stack (i.e a ready-to-go workspace), defining a custom `che devfile <https://www.eclipse.org/che/docs/che-7/end-user-guide/configuring-a-workspace-using-a-devfile/>`_ including the following elements:
 
 - A project (named *radon-particles*) that clones in the RADON workspace the TOSCA modeling entities from the `RADON Particles <https://github.com/radon-h2020/radon-particles>`_ GitHub repository;
 - The set of *Che plugins* and `Kubernetes components <https://kubernetes.io/docs/concepts/containers/>`_ that have been developed to integrate the RADON tools.
@@ -22,6 +22,5 @@ The technical details of the RADON tools integrated and used in the final releas
 - *Continuous Testing Tool*: integrated on the RADON IDE with a Che plugin and a Kubernetes component. A user can create CTT configuration file, which after being completed, can be executed again via a right-click on the configuration file and selecting "Execute test configuration".  The results of the tests are stored in the project folder.  
 - *Template Library*: integrated on the RADON IDE with a Che plugin. It enables the users to manage, store and retrieve the TOSCA modules and their implementations. The user can interact with it by right clicking on the file from file explorer or in the editor and select one of the dropdown options available.
 - *Delivery Toolchain*: integrated on the RADON IDE with
-    - A Che plugin for the SaaS Orchestrator. It eneables the users to create and run deployment projects inside the SaaS Orchestrator; 
-    - A Che plugin implementing a *Trigger CI* command to achieve the deployment process via a Jenkins job in order to add more flexibility. During the deployment process the selected CSAR (if needed) is published to the `Template Library <https://template-library-radon.xlab.si/>`_ through the available API and a remote `Jenkins <https://www.jenkins.io/>`_ job is triggered to fetch the uploaded CSAR and deploy it with the Orchestrator;
-    - A Che plugin implementing a *Open Monitorig page* command to open the Monitoring Dashboard from the IDE.
+    - A Che plugin for the `xOpera SaaS Orchestrator <https://xlab-si.github.io/xopera-opera/index.html>`_. It eneables the users to create and run deployment projects inside the xOpera SaaS Orchestrator; 
+    - A Che plugin implementing (i) the *Configure CI* and *Trigger CI* commands to configure and trigger a CI/CD pipleline on a `Jenkins <https://www.jenkins.io/>`_ server in order to add more flexibility, (ii) the *Show deployment status* command to open the xOpera SaaS Orchestrator console from the IDE and (iii) the *Open Monitorig page* command to open the Monitoring Dashboard from the IDE.
