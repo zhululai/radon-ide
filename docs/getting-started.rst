@@ -481,7 +481,7 @@ the SaaS UI where you will be able to see your created workspace and project.
    Figure 31: The xOpera SaaS plugin redirection.
 
 
-CI/CD
+CI/CD Plugin
 **********
 The user can configure and trigger CI/CD pipelines through the IDE. The use of CI/CD pipelines provides more flexability, for instance it is possible to include different tollgates in the  deployment process (i.e. the job pipelines can be complex as you want).
 
@@ -551,9 +551,25 @@ Once the configuration yaml file has been edited the user can select it and, wit
 
 Finally, the CI/CD pipeline specified in the yaml configuration file will be triggered and execute in the Jenkins server.
 
+Data Pipeline Plugin
+********************
+The data pipeline plugin can be used to ensure the consistency in the data pipeline-based TOSCA service template. The plugin takes the CSAR as the input and returns the modified CSAR which can be used further with other RADON tools, such as orchestrator, VT, etc. The plugin checks mainly two types of potential user-made errors. Firstly, the errors related to the connection between two data pipeline nodes. Here, the plugin checks if two pipeline nodes are connected with the correct relationship type. This also checks if multiple connections exist between any pair of pipeline nodes. Secondly, the plugin also updates the CSAR with correct configuration if it found any improper encryption configuration. The detaild informaiton on data pipeline can be found `here <https://datapipeline-plugin.readthedocs.io/>`_.
+
+.. figure:: imgs/data-p‬ipeline/invoke_DPP.png
+
+   Figure 35: Option to invoke data pipeline plugin    
+
+
+To invoke the data pipeline plugin with exported CSAR (in this case DataPipelineExample.csar), right click on the csar and select *Convert CSAR with Data pipeline plugin* option, as shown in  Figure 35. The converted csar will be exported to the same folder structure, in this case the output is DataPipelineExample_converted.csar, as shown in Figure 36.
+
+
+.. figure:: imgs/data-p‬ipeline/DPP_output.png
+
+   Figure 36. Data pipeline plugin output   
+   
 Other RADON Commands
 ********************
-From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (Figure 35) is available to perform the following actions:
+From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (Figure 37) is available to perform the following actions:
 
 - Open the RADON Help Page by selecting the *Open Help Page* option. Once this command is selected a browser window connecting to the RADON methodology GitHub page will be opened;
 - Open the RADON Monitoring Page by selecting the *Open Monitoring Page* option. Once this command is selected a browser window connecting to the RADON Monitoring Dashboard will be opened;
@@ -562,4 +578,4 @@ From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (F
 
 .. figure:: imgs/RADON_menu_light.jpg
 
-   Figure 35: RADON menu in the command palette.
+   Figure 37: RADON menu in the command palette.
