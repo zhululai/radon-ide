@@ -491,7 +491,7 @@ The user can configure and trigger CI/CD pipelines through the IDE. The use of C
 * A user with execution access to jobs
 * A configured CI/CD pipeline
 
-Setup guides can be found in `CI/CD templates <https://github.com/radon-h2020/radon-cicd-templates>`_ and are available for two different CI/CD technologies: Jenkins and CircleCI. 
+Setup guides can be found in `CI/CD templates <https://github.com/radon-h2020/radon-cicd-templates>`_ and are available for two different CI/CD technologies: `Jenkins <https://www.jenkins.io/>`_ and `CircleCI <https://circleci.com/>`_.
 
 The tools covered by the templates repository are: 
 
