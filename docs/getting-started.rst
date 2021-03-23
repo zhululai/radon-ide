@@ -517,8 +517,8 @@ As depicted in Figure 33 the user can select a CSAR from the file explorer and, 
 
 The system will generate a new configuration file (i.e. a yaml file) containing the following parameters to set:
 
-   - *CSAR_name*: The name of the CSAR as uploded in the Template Library;
-   - *CSAR_version*: The version of the CSAR as as uploded in the Template Library;
+   - *CSAR_name*: The name of the CSAR as uploaded in the Template Library;
+   - *CSAR_version*: The version of the CSAR as as uploaded in the Template Library;
    - *Jenkins_URL*: The URL of the Jenkins server;
    - *Jenkins_username*: The username of Jenkins credentials;
    - *Jenkins_password*: The password of Jenkins credentials;
