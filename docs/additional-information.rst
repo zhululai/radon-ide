@@ -15,5 +15,3 @@ References
 - Template Library: 	https://template-library-radon.xlab.si
 - Delivery Toolchain: https://radon-h2020.github.io/radon-delivery-toolchain/
 - Data Pipeline Plugin: https://datapipeline-plugin.readthedocs.io/
-
-

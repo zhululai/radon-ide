@@ -1,11 +1,11 @@
 The following documentation explains how to use the final release of the RADON integrated framework by means of the RADON IDE.
 
-Access to the RADON IDE  
+Access to the RADON IDE
 """""""""""""""""""""""
 
 Use the following `form <https://mailchi.mp/fe5357445dba/radon-ide-access-request/>`_ to request access to the RADON IDE. An account will be created and the credentials will be sent via the email specified in the form, along with the URL to the RADON Stack devfile.
 
-After receiving the credentials, login to the RADON IDE (Figure 1) connecting to the `Che Login page <http://che-che.217.172.12.178.nip.io>`_ to access the main Che dashboard (Figure 2). In the *Workspaces tab* the list of already created workspaces is visible and it is possible to create new ones. 
+After receiving the credentials, login to the RADON IDE (Figure 1) connecting to the `Che Login page <http://che-che.217.172.12.178.nip.io>`_ to access the main Che dashboard (Figure 2). In the *Workspaces tab* the list of already created workspaces is visible and it is possible to create new ones.
 
 .. figure:: imgs/IDE_Login.jpg
 
@@ -30,7 +30,7 @@ As depicted in Figure 4, a RADON workspace is started. It provides the “radon-
 
    Figure 4: RADON Workspace.
 
-How to launch RADON tools 
+How to launch RADON tools
 """""""""""""""""""""""""
 
 Graphical Modeling Tool
@@ -57,7 +57,7 @@ The RADON model will be exported in a CSAR file and will be store in the *radon-
 .. figure:: imgs/GMT_Export.jpg
 
    Figure 7: Export CSAR.
-   
+
 .. figure:: imgs/GMT_csar_light.jpg
 
    Figure 8: *radon-csar* folder.
@@ -67,16 +67,17 @@ Verification Tool
 
 The Verification Tool is used within the RADON IDE to verify that a RADON model conforms to the CDL specifications. The .cdl files defining the CDL specifications for a specific RADON model can be edited, imported and updated within the workspace of IDE (Figure 9). To get started, you can clone the `verification tool sample project <https://github.com/radon-h2020/demo-verification-tool-sample-project.git>`_ in the workspace, which contains a sample TOSCA model and a CDL specification. To clone this project use the Git functionalities provided in the workspace as described below:
 
-1. Press *Ctrl+Shift+P* to open the command palette. Select the *Git:Clone* command and type the Repository URL of the verification tool sample project. 
-2. Press *Enter* to clone the project in the workspace
-
+1. Press *Ctrl+Shift+P* to open the command palette.
+2. Select the *Git:Clone* command.
+3. Type the repository URL of the verification tool sample project.
+4. Press *Enter* to clone the project in the workspace.
 
 .. figure:: imgs/VT_cdl_light.jpg
 
    Figure 9: Edit CDL specifications.
 
 To verify that the RADON model conforms to these CDL specifications, make a right-click on the .cdl file and select the *Verify* option (Figure 10). The verification results are shown in the *RADON Verification Tool* output panel (Figure 11).
- 
+
 .. figure:: imgs/VT_verify_light.jpg
 
    Figure 10: Verification of CDL specifications by means of the VT.
@@ -89,52 +90,66 @@ In addition to the verification mode of the tool, the VT also allows users to se
 
 Decomposition Tool
 ******************
-The Decomposition Tool is used within the RADON IDE to optimize the deployment of a RADON model. To get started, you can clone the `decomposition tool sample project <https://github.com/radon-h2020/demo-decomposition-tool-sample-project.git>`_ in the workspace, which contains a *demo-app* project. To clone this project use the Git functionalities provided in the workspace as described below:
+The Decomposition Tool is used within the RADON IDE to decompose the architecture of an abstract RADON model and to optimize the deployment of a concrete RADON model. To get started, you can clone the `decomposition tool sample project <https://github.com/radon-h2020/demo-decomposition-tool-sample-project.git>`_ in the workspace:
 
-1. Press *Ctlt+Shift+P* to open the command palette. Select the *Git:Clone* command and type the Repository URL of the decomposition tool sample project. 
-2. Press *Enter* to clone the project in the workspace
+1. Press *Ctrl+Shift+P* to open the command palette.
+2. Select the *Git:Clone* command.
+3. Type the repository URL of the decomposition tool sample project.
+4. Press *Enter* to clone the project in the workspace.
 
-To invoke the optimize functionality of the DT, make a right-click on the service template (.yaml) and select the Optimize option (Figure 12). The service template will be updated according to the optimal deployment scheme, and the minimum operating cost will be printed in the Output window (View → Output) as depicted in Figure 13.
-   
-.. figure:: imgs/DT_optimize_light_2.jpg
+This project includes three folders, namely *mono-app*, *micro-app* and *demo-app*. The *mono-app* and *micro-app* folders provide sample service templates, *model.tosca*, for an abstract monolithic and an abstract microservice application respectively. The *demo-app* folder provides two sample service templates, *open_model.tosca* and *closed_model.tosca*, for a concrete demo application (thumbnail generation).
 
-   Figure 12: Optimize deployment by means of DT.
-   
-.. figure:: imgs/DT_output_light_2.jpg
+To invoke the decomposition functionality of the DT, right-click on *model.tosca* in either the *mono-app* or the *micro-app* folder and select the *Decompose* option. The execution of the decomposition procedure will be displayed in the *Output* window (*Ctrl+Shift+U* to open). After the decomposition procedure completes, the service template will be updated according to the desired decomposition solution.
 
-   Figure 13: Decomposition Tool output window.
+.. figure:: imgs/DT_decompose_light.jpg
+
+   Figure 12: Decompose architecture by means of DT.
+
+.. figure:: imgs/DT_decompose_output_light.jpg
+
+   Figure 13: Output of architecture decomposition.
+
+To invoke the optimization functionality of the DT, right-click on either *open_model.tosca* or *closed_model.tosca* in the *demo-app* folder and select the *Optimize* option. The execution of the optimization procedure will be displayed in the *Output* window (*Ctrl+Shift+U* to open). After the optimization procedure completes, the service template will be updated according to the optimal deployment scheme.
+
+.. figure:: imgs/DT_optimize_light.jpg
+
+   Figure 14: Optimize deployment by means of DT.
+
+.. figure:: imgs/DT_optimize_output_light.jpg
+
+   Figure 15: Output of deployment optimization.
 
 Defect Prediction Tool
 **********************
 
-The Defect Prediction Tool is used within the RADON IDE to enable operators to identify potentially defective IaC blueprints in Ansible or Tosca, and their defect type. 
-It consists of a Visual Studio Code extension integrated into an Eclipse Che environment, and provides a graphical user interface to run the detection on a given Ansible or Tosca blueprint and display the results. 
-The extension is packaged as an Eclipse Che Theia plugin into a sidebar container. 
-An operator can interact with it and invoke the detection by right-clicking on a YAML-based Ansible file (or TOSCA-based .csar folder) and select the Run Detection option (Figure 14).
+The Defect Prediction Tool is used within the RADON IDE to enable operators to identify potentially defective IaC blueprints in Ansible or Tosca, and their defect type.
+It consists of a Visual Studio Code extension integrated into an Eclipse Che environment, and provides a graphical user interface to run the detection on a given Ansible or Tosca blueprint and display the results.
+The extension is packaged as an Eclipse Che Theia plugin into a sidebar container.
+An operator can interact with it and invoke the detection by right-clicking on a YAML-based Ansible file (or TOSCA-based .csar folder) and select the Run Detection option (Figure 16).
 Alternatively, in case of YAML files, it is possible to run the detection by right-click on the active editor with the open YAML file and select "Run Detection".
-The results, shown in Figure 15, consist of a table showing the values for each of the extracted metrics (highlighting those that might be critical because diverging from the community standard), and the blueprint’s defect type, if any, with a set of rules to interpret the decision.
+The results, shown in Figure 17, consist of a table showing the values for each of the extracted metrics (highlighting those that might be critical because diverging from the community standard), and the blueprint’s defect type, if any, with a set of rules to interpret the decision.
 
 .. figure:: imgs/DPT_detection_light.jpg
 
-   Figure 14: Check defects on an Ansible playbook by means of DPT
-   
+   Figure 16: Check defects on an Ansible playbook by means of DPT
+
 .. figure:: imgs/DPT_output_light.jpg
 
-   Figure 15: Defect Prediction Tool output window.
+   Figure 17: Defect Prediction Tool output window.
 
 .. figure:: imgs/DPT_detection_csar_dark.png
-   
-   Figure 16: Check defects in a Cloud Service Archive by means of DPT
+
+   Figure 18: Check defects in a Cloud Service Archive by means of DPT
 
 .. figure:: imgs/DPT_output_csar_dark.png
 
-   Figure 17: Defect Prediction Tool output window for CSAR files.
+   Figure 19: Defect Prediction Tool output window for CSAR files.
 
-Continuous Testing Tool 
+Continuous Testing Tool
 ***********************
 
-The Continuous Testing Tool (CTT) provides the means to deploy the application that is supposed to be tested, the so-called system under test (SUT), and a testing agent, the so-called test infrastructure (TI), that executes the defined tests against the SUT. 
-After the deployment has succeeded, the defined test is executed and the results are obtained. 
+The Continuous Testing Tool (CTT) provides the means to deploy the application that is supposed to be tested, the so-called system under test (SUT), and a testing agent, the so-called test infrastructure (TI), that executes the defined tests against the SUT.
+After the deployment has succeeded, the defined test is executed and the results are obtained.
 The complete functionality of the tool is described in the `CTT documentation <https://continuous-testing-tool.readthedocs.io/en/latest/>`_.
 
 In this documentation, we go through the test of the "ServerlessToDoListAPI" and an endpoint test that makes sure that the deployment was successful. The SUT is FaaS-based implementation of a ToDo-list using AWS services, especially AWS lambda functions. The TI consists of a Docker container of a test agent for CTT that is deployed on top of an AWS EC2 instance.
@@ -144,8 +159,8 @@ To make this example work, some information is needed beforehand: AWS Access Key
 The concrete steps are as follows:
 
 **1. Preparing the Workspace with Credentials**
-In order to use CTT in the context of the RADON IDE, some credentials need to be provided when the workspace is created. 
-In the future, this step will be made more comfortable to conduct. 
+In order to use CTT in the context of the RADON IDE, some credentials need to be provided when the workspace is created.
+In the future, this step will be made more comfortable to conduct.
 The said credentials are required in order to deploy the SUT and the TI on the respective service providers’ infrastructures (e.g., AWS).
 
 These credentials need to be filled in into the workspace configuration ``devfile.yaml`` before the workspace is created.
@@ -174,9 +189,9 @@ The following code listing shows an exemplary excerpt of the ``devfile.yaml``’
 Once these variables are set, the workspace can be created.
 
 **2. Configuring the Test Scenario**
-Once the workspace is started and completely loaded, we create a new directory that holds all files that are needed to execute CTT. 
+Once the workspace is started and completely loaded, we create a new directory that holds all files that are needed to execute CTT.
 In this example, we name it ``ServerlessToDoList``.
-The CSAR files of the *Serverless ToDo-List API* service template and the *CTT Deployment Test Agent* are put into this directory, as well as an ``inputs.yaml`` file that provides some inputs needed for the deployment of the TI. 
+The CSAR files of the *Serverless ToDo-List API* service template and the *CTT Deployment Test Agent* are put into this directory, as well as an ``inputs.yaml`` file that provides some inputs needed for the deployment of the TI.
 It is necessary to fill in the fields ``vpc_subnet_id`` with the VPC subnet ID on AWS the instance is supposed to be deployed to, and ``ssh_key_name`` represents the SSH key name that is stored in AWS for deploying EC2 instances.
 The field ``ssh_key_file`` should stay as is.
 The following code listing shows an exemplary ``inputs.yaml`` file. ::
@@ -212,21 +227,21 @@ The following code listing shows an exemplary CTT configuration file named ``ctt
 
 Please note that the folder property is currently named ``repository_url`` for technical reasons. In the future, this property will be renamed.
 
-The resulting scenario can be seen in Figure 18.
+The resulting scenario can be seen in Figure 20.
 
 .. figure:: imgs/CTT_scenario.png
 
-   Figure 18: Severless ToDo-List API scenario in the RADON IDE
+   Figure 20: Severless ToDo-List API scenario in the RADON IDE
 
 **3. Executing CTT**
 
 After all preparations are finished, you can right-click on the ``ctt_config.yaml`` file and choose the option ``RadonCTT: Execute test configuration``.
 
-The progress can be seen in the output panel (see Figure 19) and a progress bar appears on the lower right.
+The progress can be seen in the output panel (see Figure 21) and a progress bar appears on the lower right.
 
 .. figure:: imgs/CTT_progress_log.png
 
-   Figure 19: Progress log in the output panel of the RADON IDE
+   Figure 21: Progress log in the output panel of the RADON IDE
 
 Depending on the underlying infrastructure, this process can take some time until the process is finished.
 Once the process is finished, you can find the results in a ZIP-file located in the place you specified in the configuration file in ``result_destination_path`` (in this example, this would be ``serverless-test-results.zip``).
@@ -258,7 +273,7 @@ commands that can be selected from the dropdown options and these are further ex
 
 .. figure:: imgs/tl/commands.png
 
-   Figure 20: Template library plugin commands
+   Figure 22: Template library plugin commands
 
 **Template library authentication**
 
@@ -273,7 +288,7 @@ Since Template library auth works through KeyCloak, there can be multiple login 
 
 .. figure:: imgs/tl/auth_methods.png
 
-   Figure 21: Template library plugin auth
+   Figure 23: Template library plugin auth
 
 If the login does not succeed, you will be warned and will have to login again. If the login succeeds, the KeyCloak auth cookies
 will be stored into the local storage and next time you invoke the any plugin command, you won't have to login again. But if you
@@ -283,11 +298,11 @@ you will have to login again every time you use the plugin.
 
 .. figure:: imgs/tl/login_password.png
 
-   Figure 22: Password prompt
+   Figure 24: Password prompt
 
 .. figure:: imgs/tl/login_success.png
 
-   Figure 23: Login success
+   Figure 25: Login success
 
 **Template library set REST API endpoint**
 
@@ -297,7 +312,7 @@ This command was meant mostly for testing different versions of TPS API so curre
 
 .. figure:: imgs/tl/set_api_endpoint.png
 
-   Figure 24: Set TPS REST API endpoint
+   Figure 26: Set TPS REST API endpoint
 
 **Template library config actions**
 
@@ -337,7 +352,7 @@ Example:
 
 .. figure:: imgs/tl/upload_config.png
 
-   Figure 25: Upload config action
+   Figure 27: Upload config action
 
 *Upload template version JSON config*
 
@@ -371,7 +386,7 @@ Example:
 
 .. figure:: imgs/tl/upload_success.png
 
-   Figure 26: Successful template version upload
+   Figure 28: Successful template version upload
 
 *Download template version JSON config*
 
@@ -400,11 +415,11 @@ Example:
 
 .. figure:: imgs/tl/download_config.png
 
-   Figure 27: Download config action
+   Figure 29: Download config action
 
 .. figure:: imgs/tl/download_success.png
 
-   Figure 28: Successful template version download
+   Figure 30: Successful template version download
 
 **Template library interactive actions**
 
@@ -461,7 +476,7 @@ than other actions are performed through the Opera SaaS web interface.
 
 .. figure:: imgs/xopera-saas/deploy_csar.png
 
-   Figure 29: Deployment of the CSAR.
+   Figure 31: Deployment of the CSAR.
 
 User can invoke the main plugin actions by right clicking on the compressed
 TOSCA CSAR (file should include .zip or .csar extension). Then the plugin will
@@ -469,7 +484,7 @@ interactively guide him through the creation of workspace and the project.
 
 .. figure:: imgs/xopera-saas/create_project.png
 
-   Figure 30: Creating a new project.
+   Figure 32: Creating a new project.
 
 After that you will be asked if you want to deploy the CSAR from the project.
 The deployment process starts right away and gives you the deployment outputs
@@ -478,7 +493,7 @@ the SaaS UI where you will be able to see your created workspace and project.
 
 .. figure:: imgs/xopera-saas/redirect.png
 
-   Figure 31: The xOpera SaaS plugin redirection.
+   Figure 33: The xOpera SaaS plugin redirection.
 
 
 CI/CD Plugin
@@ -493,7 +508,7 @@ The user can configure and trigger CI/CD pipelines through the IDE. The use of C
 
 Setup guides can be found in `CI/CD templates <https://github.com/radon-h2020/radon-cicd-templates>`_ and are available for two different CI/CD technologies: `Jenkins <https://www.jenkins.io/>`_ and `CircleCI <https://circleci.com/>`_.
 
-The tools covered by the templates repository are: 
+The tools covered by the templates repository are:
 
 - CTT - Continuous Testing Tool
 - VT - Verification Tool
@@ -501,19 +516,19 @@ The tools covered by the templates repository are:
 - TL - Template Library
 - xOpera - Orchestrator
 
-The above tools have its corresponding folder where examples are listed. You as a user are free to cherrypick the code snippets in order to generate the ideal CI/CD pipeline. Figure 32 beneath depicts a configuration where a CSAR is fetched from Template Library and deployed to AWS cloud.
+The above tools have its corresponding folder where examples are listed. You as a user are free to cherrypick the code snippets in order to generate the ideal CI/CD pipeline. Figure 34 beneath depicts a configuration where a CSAR is fetched from Template Library and deployed to AWS cloud.
 
 .. figure:: imgs/PRQ_CI_CONFIG.png
 
-   Figure 32: Example of CI/CD pipeline
+   Figure 34: Example of CI/CD pipeline
 
 **CI/CD execution**
 
-As depicted in Figure 33 the user can select a CSAR from the file explorer and, with a right-click, select the *Configure CI* command. 
+As depicted in Figure 35 the user can select a CSAR from the file explorer and, with a right-click, select the *Configure CI* command.
 
 .. figure:: imgs/CI_CD_ConfigureCI.jpg
 
-   Figure 33: Configure CI.
+   Figure 35: Configure CI.
 
 The system will generate a new configuration file (i.e. a yaml file) containing the following parameters to set:
 
@@ -523,10 +538,10 @@ The system will generate a new configuration file (i.e. a yaml file) containing 
    - *Jenkins_username*: The username of Jenkins credentials;
    - *Jenkins_password*: The password of Jenkins credentials;
    - *Jenkins_job*: The job (i.e. CI/CD pipeline) that must be triggered;
-   - *Jenkins_job_token*: The Authentication Token associated to the job; 
+   - *Jenkins_job_token*: The Authentication Token associated to the job;
    - *cookie_jar*: Parameter used to get a Jenkins crumb. Use the value */tmp/cookies*
 
-Please note that the selected CSAR must be already uploaded on the Template Library using the *CSAR_name* and *CSAR_version* specified in the yaml configuration file. 
+Please note that the selected CSAR must be already uploaded on the Template Library using the *CSAR_name* and *CSAR_version* specified in the yaml configuration file.
 
 Example:
 
@@ -542,12 +557,12 @@ Example:
          "Jenkins_job_token": "toy-app",
          "cookie_jar": "/tmp/cookies"
       }
-  
-Once the configuration yaml file has been edited the user can select it and, with a right-click, select the *Trigger CI* command (Figure 34).
+
+Once the configuration yaml file has been edited the user can select it and, with a right-click, select the *Trigger CI* command (Figure 36).
 
 .. figure:: imgs/CI_CD_TriggerCI.jpg
 
-   Figure 34: Trigger CI
+   Figure 36: Trigger CI
 
 Finally, the CI/CD pipeline specified in the yaml configuration file will be triggered and execute in the Jenkins server.
 
@@ -557,19 +572,19 @@ The data pipeline plugin can be used to ensure the consistency in the data pipel
 
 .. figure:: imgs/data-p‬ipeline/invoke_DPP.png
 
-   Figure 35: Option to invoke data pipeline plugin    
+   Figure 37: Option to invoke data pipeline plugin
 
 
-To invoke the data pipeline plugin with exported CSAR (in this case DataPipelineExample.csar), right click on the csar and select *Convert CSAR with Data pipeline plugin* option, as shown in  Figure 35. The converted csar will be exported to the same folder structure, in this case the output is DataPipelineExample_converted.csar, as shown in Figure 36.
+To invoke the data pipeline plugin with exported CSAR (in this case DataPipelineExample.csar), right click on the csar and select *Convert CSAR with Data pipeline plugin* option, as shown in  Figure 37. The converted csar will be exported to the same folder structure, in this case the output is DataPipelineExample_converted.csar, as shown in Figure 38.
 
 
 .. figure:: imgs/data-p‬ipeline/DPP_output.png
 
-   Figure 36. Data pipeline plugin output   
-   
+   Figure 38. Data pipeline plugin output
+
 Other RADON Commands
 ********************
-From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (Figure 37) is available to perform the following actions:
+From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (Figure 39) is available to perform the following actions:
 
 - Open the RADON Help Page by selecting the *Open Help Page* option. Once this command is selected a browser window connecting to the RADON methodology GitHub page will be opened;
 - Open the RADON Monitoring Page by selecting the *Open Monitoring Page* option. Once this command is selected a browser window connecting to the RADON Monitoring Dashboard will be opened;
@@ -578,4 +593,4 @@ From the command palette of the IDE (shown with *Ctrl+Shift+P*), a RADON menu (F
 
 .. figure:: imgs/RADON_menu_light.jpg
 
-   Figure 37: RADON menu in the command palette.
+   Figure 39: RADON menu in the command palette.
