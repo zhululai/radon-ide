@@ -6,7 +6,7 @@ These are the set of actions that can be performed by an authenticated RADON use
 - Availability of the Verification Tool, Decomposition Tool, Defect Prediction Tool, and the Continuous Testing Tool, that can be invoked by the RADON user to verify CDL specifications on the RADON models, to optimize the deployment of the applications and to find the defects on the Infrastracture as Code (IaC) blueprints, and to test applications, respectively;
 - Export of the modelled application in TOSCA’s Cloud Service Archive (CSAR) format for the deployment;
 - Start the deployment process of the CSAR by publishing it on the Template Library and by means of the Delivery Toolchain;
-- Visualization of the deployment status on a browser window.
+- Visualization of the deployment status and monitoring data on a browser window.
 
 The above capabilities have been implemented by the customization of the Eclipse Che environment with the realization of a new RADON Stack (i.e a ready-to-go workspace), defining a custom `che devfile <https://www.eclipse.org/che/docs/che-7/end-user-guide/configuring-a-workspace-using-a-devfile/>`_ including the following elements:
 
