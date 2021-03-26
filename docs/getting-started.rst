@@ -497,7 +497,7 @@ the SaaS UI where you will be able to see your created workspace and project.
 
 
 CI/CD Plugin
-**********
+************
 The user can configure and trigger CI/CD pipelines through the IDE. The use of CI/CD pipelines provides more flexability, for instance it is possible to include different tollgates in the  deployment process (i.e. the job pipelines can be complex as you want).
 
 **CI/CD preconditions**
