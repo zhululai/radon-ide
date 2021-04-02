@@ -1,0 +1,94 @@
+{
+	"name": "radon-cicd-plugin",
+	"displayName": "radon-cicd-plugin",
+	"description": "A CI/CD plugin to configure and trigger CI/CD pipelines in a Jenkins server",
+	"version": "0.0.1",
+	"publisher": "radon",
+	"engines": {
+		"vscode": "^1.44.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:radon-cicd-plugin.configCI",
+		"onCommand:radon-cicd-plugin.triggerCI"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"menus": {
+			"commandPalette": [
+				{
+					"when": "resourceExtname == .csar && resourceSet",
+					"command": "radon-cicd-plugin.configCI"
+				},
+				{
+					"when": "resourceExtname == .yaml && resourceSet",
+					"command": "radon-cicd-plugin.triggerCI"
+				}
+			],
+			"explorer/context": [
+				{
+					"when": "resourceExtname == .csar",
+					"command": "radon-cicd-plugin.configCI",
+					"group": "myGroup@1"
+				},
+				{
+					"when": "resourceExtname == .yaml",
+					"command": "radon-cicd-plugin.triggerCI",
+					"group": "myGroup@1"
+				}
+			],
+			"editor/context": [
+				{
+					"command": "radon-cicd-plugin.configCI",
+					"group": "myGroup@2"
+				},
+				{
+					"command": "radon-cicd-plugin.triggerCI",
+					"group": "myGroup@2"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "radon-cicd-plugin.configCI",
+				"category": "RADON",
+				"title": "Configure CI"
+			},
+			{
+				"command": "radon-cicd-plugin.triggerCI",
+				"category": "RADON",
+				"title": "Trigger CI"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^13.11.0",
+		"@types/vscode": "^1.44.0",
+		"@typescript-eslint/eslint-plugin": "^2.26.0",
+		"@typescript-eslint/parser": "^2.26.0",
+		"eslint": "^6.8.0",
+		"glob": "^7.1.6",
+		"mocha": "^7.1.1",
+		"simple-git": "^2.5.0",
+		"typescript": "^3.8.3",
+		"vscode-test": "^1.3.0"
+	},
+	"dependencies": {
+		"axios": "^0.21.0",
+		"form-data": "^3.0.0",
+		"js-yaml": "^4.0.0",
+		"node-html-parser": "^1.4.5"
+	}
+}
