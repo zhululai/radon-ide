@@ -249,4 +249,8 @@ components:
     reference: >-
       https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-tosca-yaml/latest/meta.yaml
     alias: radon-tosca-yaml
+  - type: chePlugin
+    reference: >-
+      https://raw.githubusercontent.com/radon-h2020/radon-plugin-registry/master/radon/radon-cicd-plugin/latest/meta.yaml
+    alias: radon-cicd-plugin
 apiVersion: 1.0.0
